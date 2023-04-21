@@ -1,0 +1,16 @@
+body {
+  background-color: #000;
+}
+
+#game-area {
+  width: 1080px;
+  height: 920px;
+  background-image: url("background.1f14848b.jpg");
+  padding: 50px;
+}
+
+#planeImg {
+  position: fixed;
+}
+
+/*# sourceMappingURL=index.ee7f3cbd.css.map */
