@@ -1,14 +1,28 @@
-
+import {Plane} from "./plane.js";
+// import { Enemy } from "./enemy.js";
 
 export class Game {
     constructor() {
         this.gameArea=document.getElementById("game-area");
-        this.gameScore=getElementById("score");
-        this.gameLives=getElementById("lives");
-        this.gameFinished=getElementById("game-finished");
-        this.enemies=[];
+        this.gameScore=document.getElementById("score");
+        this.gameLives=document.getElementById("lives");
+        this.gameFinished=document.getElementById("game-finished");
+        // this.enemy= new Enemy();
         this.score=0;
         this.lives=4;
+        this.gameOver= false;
+        this.plane= new Plane(
+        this.gameArea,
+        300,
+        300,
+        650,
+        100,
+        150,
+        "../../images/plane.png",
+        );
+        this.enemy= [];
+        this.score=0;
+        this.lives= 4;
         this.gameOver= false;
 
         this.width= 600;
@@ -16,7 +30,23 @@ export class Game {
         
         this.height=500;
         this.gameArea.style.height= `${this.height}px`;
+}
+
+gameLoop() {
+    console.log("game is looping");
+
+    if(this.gameOver){
+        return;
     }
 
+    this.update();
+    window.requestAnimationFrame(() => this.gameLoop());
+}
+
+update() {
+    console.log("Game updating...");
+    this.plane.move();
+    // this.enemy.move();
+}
 }
 

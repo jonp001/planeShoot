@@ -142,13 +142,13 @@
       this[globalName] = mainExports;
     }
   }
-})({"fyTPu":[function(require,module,exports) {
+})({"hOoVo":[function(require,module,exports) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
-module.bundle.HMR_BUNDLE_ID = "207a8fdfe82f28a0";
+module.bundle.HMR_BUNDLE_ID = "cd07361543c81ea2";
 "use strict";
 /* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, chrome, browser, globalThis, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
 import type {
@@ -556,48 +556,90 @@ function hmrAccept(bundle, id) {
     });
 }
 
-},{}],"dV6cC":[function(require,module,exports) {
-var _gameJs = require("./game.js");
-// import {Plane} from "./plane.js";
-window.onload = function() {
-    let game;
-    // function startGame() {
-    console.log("Game started");
-    game = new (0, _gameJs.Game)();
-    // console.log("game: ", game)
-    game.gameLoop();
-    // }
-    function handleKeydown(e) {
-        const key = e.key;
-        console.log("key: ", key);
-        const possibleKeystrokes = [
-            "ArrowLeft",
-            "ArrowRight"
-        ];
-        if (possibleKeystrokes.includes(key)) {
-            e.preventDefault();
-            switch(key){
-                case "ArrowLeft":
-                    // console.log("hello: ", game.plane)
-                    game.plane.directionX = -1;
-                    break;
-                case "ArrowRight":
-                    // console.log("hello: ", game.plane)
-                    game.plane.directionX = 1;
-                    break;
-            }
-        }
+},{}],"g00R2":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Plane", ()=>Plane);
+var _planePng = require("../../images/plane.png");
+var _planePngDefault = parcelHelpers.interopDefault(_planePng);
+class Plane {
+    constructor(gameArea, left, right, top, width, height){
+        this.gameArea = gameArea;
+        this.left = left;
+        this.right = right;
+        this.top = top;
+        this.width = width;
+        this.height = height;
+        this.directionX = 0;
+        this.directionY = 0;
+        this.speed = 5;
+        this.gameArea = document.getElementById("game-area");
+        this.element = document.createElement("img");
+        this.element.src = (0, _planePngDefault.default);
+        this.element.setAttribute("id", "planeImg");
+        this.gameArea.appendChild(this.element);
+        this.width = 60;
+        this.element.style.width = `${this.width}px`;
+        this.height = 60;
+        this.element.style.height = `${this.height}px`;
+        // this.positionX= window.innerWidth / 6.5
+        // this.element.style.left= `${this.positionX}px`
+        // this.positionY= window.innerHeight - 400
+        // this.element.style.top= `${this.positionY}px`
+        this.element.style.position = "absolute";
+        this.element.style.left = `${this.left}px`;
+        this.element.style.top = `${this.top}px`;
     }
-    window.addEventListener("keydown", handleKeydown);
-// const plane= new Plane();
-// const updateGame =() => {
-//     if (key["ArrowLeft"] {
-//         plane.moveL();
-//     } else if(key["ArrowRight"]) {
-//         plane.moveR();
-//     }
-};
+    move() {
+        this.left += this.directionX;
+        this.right -= this.directionX;
+        if (this.left < 50) this.left = 50;
+        if (this.left + this.width > this.gameArea.offsetWidth - 50) this.left = this.gameArea.offsetWidth - this.width - 50;
+        this.updatePosition();
+    }
+    updatePosition() {
+        this.element.style.left = `${this.left}px`;
+        this.element.style.right = `${this.right}px`;
+    }
+}
 
-},{"./game.js":"9hTyP"}]},["fyTPu","dV6cC"], "dV6cC", "parcelRequirea506")
+},{"../../images/plane.png":"aaIRL","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aaIRL":[function(require,module,exports) {
+module.exports = require("1276a3eebfe9c72c").getBundleURL("hBmkl") + "plane.c24ce8af.png" + "?" + Date.now();
 
-//# sourceMappingURL=index.e82f28a0.js.map
+},{"1276a3eebfe9c72c":"lgJ39"}],"lgJ39":[function(require,module,exports) {
+"use strict";
+var bundleURL = {};
+function getBundleURLCached(id) {
+    var value = bundleURL[id];
+    if (!value) {
+        value = getBundleURL();
+        bundleURL[id] = value;
+    }
+    return value;
+}
+function getBundleURL() {
+    try {
+        throw new Error();
+    } catch (err) {
+        var matches = ("" + err.stack).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^)\n]+/g);
+        if (matches) // The first two stack frames will be this function and getBundleURLCached.
+        // Use the 3rd one, which will be a runtime in the original bundle.
+        return getBaseURL(matches[2]);
+    }
+    return "/";
+}
+function getBaseURL(url) {
+    return ("" + url).replace(/^((?:https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/.+)\/[^/]+$/, "$1") + "/";
+} // TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
+function getOrigin(url) {
+    var matches = ("" + url).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^/]+/);
+    if (!matches) throw new Error("Origin not found");
+    return matches[0];
+}
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+exports.getOrigin = getOrigin;
+
+},{}]},["hOoVo"], null, "parcelRequirea506")
+
+//# sourceMappingURL=index.43c81ea2.js.map

@@ -563,9 +563,10 @@ parcelHelpers.export(exports, "Plane", ()=>Plane);
 var _planePng = require("../../images/plane.png");
 var _planePngDefault = parcelHelpers.interopDefault(_planePng);
 class Plane {
-    constructor(left, top, width, height, gameArea){
+    constructor(gameArea, left, right, top, width, height){
         this.gameArea = gameArea;
         this.left = left;
+        this.right = right;
         this.top = top;
         this.width = width;
         this.height = height;
@@ -577,20 +578,28 @@ class Plane {
         this.element.src = (0, _planePngDefault.default);
         this.element.setAttribute("id", "planeImg");
         this.gameArea.appendChild(this.element);
-        this.width = 120;
+        this.width = 60;
         this.element.style.width = `${this.width}px`;
-        this.height = 120;
+        this.height = 60;
         this.element.style.height = `${this.height}px`;
-        this.positionX = window.innerWidth / 6.5;
-        this.element.style.left = `${this.positionX}px`;
-        this.positionY = window.innerHeight - 400;
-        this.element.style.top = `${this.positionY}px`;
+        // this.positionX= window.innerWidth / 6.5
+        // this.element.style.left= `${this.positionX}px`
+        // this.positionY= window.innerHeight - 400
+        // this.element.style.top= `${this.positionY}px`
+        this.element.style.position = "absolute";
+        this.element.style.left = `${this.left}px`;
+        this.element.style.top = `${this.top}px`;
     }
-    moveR() {
-        this.positionX(this.x + this.speed);
+    move() {
+        this.left += this.directionX;
+        this.right -= this.directionX;
+        if (this.left < 50) this.left = 50;
+        if (this.left + this.width > this.gameArea.offsetWidth - 50) this.left = this.gameArea.offsetWidth - this.width - 50;
+        this.updatePosition();
     }
-    moveL() {
-        this.positionX(this.x - this.speed);
+    updatePosition() {
+        this.element.style.left = `${this.left}px`;
+        this.element.style.right = `${this.right}px`;
     }
 }
 

@@ -559,14 +559,21 @@ function hmrAccept(bundle, id) {
 },{}],"9hTyP":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+// import { Enemy } from "./enemy.js";
 parcelHelpers.export(exports, "Game", ()=>Game);
+var _planeJs = require("./plane.js");
 class Game {
     constructor(){
         this.gameArea = document.getElementById("game-area");
-        this.gameScore = getElementById("score");
-        this.gameLives = getElementById("lives");
-        this.gameFinished = getElementById("game-finished");
-        this.enemies = [];
+        this.gameScore = document.getElementById("score");
+        this.gameLives = document.getElementById("lives");
+        this.gameFinished = document.getElementById("game-finished");
+        // this.enemy= new Enemy();
+        this.score = 0;
+        this.lives = 4;
+        this.gameOver = false;
+        this.plane = new (0, _planeJs.Plane)(this.gameArea, 300, 300, 650, 100, 150, "../../images/plane.png");
+        this.enemy = [];
         this.score = 0;
         this.lives = 4;
         this.gameOver = false;
@@ -575,8 +582,19 @@ class Game {
         this.height = 500;
         this.gameArea.style.height = `${this.height}px`;
     }
+    gameLoop() {
+        console.log("game is looping");
+        if (this.gameOver) return;
+        this.update();
+        window.requestAnimationFrame(()=>this.gameLoop());
+    }
+    update() {
+        console.log("Game updating...");
+        this.plane.move();
+    // this.enemy.move();
+    }
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["gQxC0","9hTyP"], "9hTyP", "parcelRequirea506")
+},{"./plane.js":"g00R2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["gQxC0","9hTyP"], "9hTyP", "parcelRequirea506")
 
 //# sourceMappingURL=index.9b68c836.js.map

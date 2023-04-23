@@ -5,12 +5,11 @@ body{
 
 #game-area{
     background-image: url(../../images/background.jpg);
-   width: 1080px;
-   height: 920px;
-   padding: 50px; 
+    padding:50px;
 }
 
 #planeImg{
-    position: fixed;
+    position: absolute;
+    
     }
 

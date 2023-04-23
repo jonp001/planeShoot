@@ -142,13 +142,13 @@
       this[globalName] = mainExports;
     }
   }
-})({"fyTPu":[function(require,module,exports) {
+})({"8qCtK":[function(require,module,exports) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
-module.bundle.HMR_BUNDLE_ID = "207a8fdfe82f28a0";
+module.bundle.HMR_BUNDLE_ID = "0b464f7470291827";
 "use strict";
 /* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, chrome, browser, globalThis, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
 import type {
@@ -556,48 +556,43 @@ function hmrAccept(bundle, id) {
     });
 }
 
-},{}],"dV6cC":[function(require,module,exports) {
-var _gameJs = require("./game.js");
-// import {Plane} from "./plane.js";
-window.onload = function() {
-    let game;
-    // function startGame() {
-    console.log("Game started");
-    game = new (0, _gameJs.Game)();
-    // console.log("game: ", game)
-    game.gameLoop();
-    // }
-    function handleKeydown(e) {
-        const key = e.key;
-        console.log("key: ", key);
-        const possibleKeystrokes = [
-            "ArrowLeft",
-            "ArrowRight"
-        ];
-        if (possibleKeystrokes.includes(key)) {
-            e.preventDefault();
-            switch(key){
-                case "ArrowLeft":
-                    // console.log("hello: ", game.plane)
-                    game.plane.directionX = -1;
-                    break;
-                case "ArrowRight":
-                    // console.log("hello: ", game.plane)
-                    game.plane.directionX = 1;
-                    break;
-            }
-        }
+},{}],"9hTyP":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Game", ()=>Game);
+var _planeJs = require("./plane.js");
+new (0, _planeJs.Plane)();
+class Game {
+    constructor(){
+        this.gameArea = document.getElementById("game-area");
+        this.gameScore = getElementById("score");
+        this.gameLives = getElementById("lives");
+        this.gameFinished = getElementById("game-finished");
+        this.enemies = [];
+        this.score = 0;
+        this.lives = 4;
+        this.gameOver = false;
+        this.plane = new (0, _planeJs.Plane)(this.gameArea, 200, 400, 100, 150, "../../images/plane.png");
+        this.score = 0;
+        this.lives = 4;
+        this.gameOver = false;
+        this.width = 600;
+        this.gameArea.style.width = `${this.width}px`;
+        this.height = 500;
+        this.gameArea.style.height = `${this.height}px`;
     }
-    window.addEventListener("keydown", handleKeydown);
-// const plane= new Plane();
-// const updateGame =() => {
-//     if (key["ArrowLeft"] {
-//         plane.moveL();
-//     } else if(key["ArrowRight"]) {
-//         plane.moveR();
-//     }
-};
+    gameLoop() {
+        console.log("game is looping");
+        if (this.gameOver) return;
+        this.update();
+        window.requestAnimationFrame(()=>this.gameLoop());
+    }
+    update() {
+        console.log("Game updating...");
+        this.plane.move();
+    }
+}
 
-},{"./game.js":"9hTyP"}]},["fyTPu","dV6cC"], "dV6cC", "parcelRequirea506")
+},{"./plane.js":"g00R2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["8qCtK"], null, "parcelRequirea506")
 
-//# sourceMappingURL=index.e82f28a0.js.map
+//# sourceMappingURL=index.70291827.js.map

@@ -142,13 +142,13 @@
       this[globalName] = mainExports;
     }
   }
-})({"fyTPu":[function(require,module,exports) {
+})({"7cK3P":[function(require,module,exports) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
-module.bundle.HMR_BUNDLE_ID = "207a8fdfe82f28a0";
+module.bundle.HMR_BUNDLE_ID = "ec6850ca4e5b38f1";
 "use strict";
 /* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, chrome, browser, globalThis, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
 import type {
@@ -556,48 +556,67 @@ function hmrAccept(bundle, id) {
     });
 }
 
-},{}],"dV6cC":[function(require,module,exports) {
-var _gameJs = require("./game.js");
-// import {Plane} from "./plane.js";
-window.onload = function() {
-    let game;
-    // function startGame() {
-    console.log("Game started");
-    game = new (0, _gameJs.Game)();
-    // console.log("game: ", game)
-    game.gameLoop();
-    // }
-    function handleKeydown(e) {
-        const key = e.key;
-        console.log("key: ", key);
-        const possibleKeystrokes = [
-            "ArrowLeft",
-            "ArrowRight"
-        ];
-        if (possibleKeystrokes.includes(key)) {
-            e.preventDefault();
-            switch(key){
-                case "ArrowLeft":
-                    // console.log("hello: ", game.plane)
-                    game.plane.directionX = -1;
-                    break;
-                case "ArrowRight":
-                    // console.log("hello: ", game.plane)
-                    game.plane.directionX = 1;
-                    break;
-            }
-        }
+},{}],"d4MNF":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Enemy", ()=>Enemy);
+var _enemyPng = require("../../images/enemy.png");
+var _enemyPngDefault = parcelHelpers.interopDefault(_enemyPng);
+class Enemy {
+    constructor(gameArea){
+        this.gameArea = gameArea;
+        this.left = Math.floor(Math.random() * 250);
+        this.top = 60;
+        this.width = 50;
+        this.height = 50;
+        this.element = document.createElement("img");
+        this.element.src = (0, _enemyPngDefault.default);
+        this.element.style.width = `${this.width}px`;
+        this.element.style.height = `${this.height}px`;
+        this.element.style.left = `${this.left}px`;
+        this.element.style.top = `${this.top}px`;
+        this.element.style.position = "absolute";
+        this.gameArea.appendChild(this.element);
     }
-    window.addEventListener("keydown", handleKeydown);
-// const plane= new Plane();
-// const updateGame =() => {
-//     if (key["ArrowLeft"] {
-//         plane.moveL();
-//     } else if(key["ArrowRight"]) {
-//         plane.moveR();
-//     }
-};
+}
 
-},{"./game.js":"9hTyP"}]},["fyTPu","dV6cC"], "dV6cC", "parcelRequirea506")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../images/enemy.png":"kn4aC"}],"kn4aC":[function(require,module,exports) {
+module.exports = require("9a8bc7b3e5cb5514").getBundleURL("kiogR") + "enemy.cc8bfb0f.png" + "?" + Date.now();
 
-//# sourceMappingURL=index.e82f28a0.js.map
+},{"9a8bc7b3e5cb5514":"lgJ39"}],"lgJ39":[function(require,module,exports) {
+"use strict";
+var bundleURL = {};
+function getBundleURLCached(id) {
+    var value = bundleURL[id];
+    if (!value) {
+        value = getBundleURL();
+        bundleURL[id] = value;
+    }
+    return value;
+}
+function getBundleURL() {
+    try {
+        throw new Error();
+    } catch (err) {
+        var matches = ("" + err.stack).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^)\n]+/g);
+        if (matches) // The first two stack frames will be this function and getBundleURLCached.
+        // Use the 3rd one, which will be a runtime in the original bundle.
+        return getBaseURL(matches[2]);
+    }
+    return "/";
+}
+function getBaseURL(url) {
+    return ("" + url).replace(/^((?:https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/.+)\/[^/]+$/, "$1") + "/";
+} // TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
+function getOrigin(url) {
+    var matches = ("" + url).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^/]+/);
+    if (!matches) throw new Error("Origin not found");
+    return matches[0];
+}
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+exports.getOrigin = getOrigin;
+
+},{}]},["7cK3P"], null, "parcelRequirea506")
+
+//# sourceMappingURL=index.4e5b38f1.js.map

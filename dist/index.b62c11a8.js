@@ -142,13 +142,13 @@
       this[globalName] = mainExports;
     }
   }
-})({"fyTPu":[function(require,module,exports) {
+})({"h5jYF":[function(require,module,exports) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
-module.bundle.HMR_BUNDLE_ID = "207a8fdfe82f28a0";
+module.bundle.HMR_BUNDLE_ID = "7e90e313b62c11a8";
 "use strict";
 /* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, chrome, browser, globalThis, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
 import type {
@@ -556,48 +556,26 @@ function hmrAccept(bundle, id) {
     });
 }
 
-},{}],"dV6cC":[function(require,module,exports) {
-var _gameJs = require("./game.js");
-// import {Plane} from "./plane.js";
-window.onload = function() {
-    let game;
-    // function startGame() {
-    console.log("Game started");
-    game = new (0, _gameJs.Game)();
-    // console.log("game: ", game)
-    game.gameLoop();
-    // }
-    function handleKeydown(e) {
-        const key = e.key;
-        console.log("key: ", key);
-        const possibleKeystrokes = [
-            "ArrowLeft",
-            "ArrowRight"
-        ];
-        if (possibleKeystrokes.includes(key)) {
-            e.preventDefault();
-            switch(key){
-                case "ArrowLeft":
-                    // console.log("hello: ", game.plane)
-                    game.plane.directionX = -1;
-                    break;
-                case "ArrowRight":
-                    // console.log("hello: ", game.plane)
-                    game.plane.directionX = 1;
-                    break;
-            }
-        }
-    }
-    window.addEventListener("keydown", handleKeydown);
-// const plane= new Plane();
-// const updateGame =() => {
-//     if (key["ArrowLeft"] {
-//         plane.moveL();
-//     } else if(key["ArrowRight"]) {
-//         plane.moveR();
-//     }
-};
+},{}],"d4MNF":[function(require,module,exports) {
+// import imgSrcTwo from "../../images/enemy.png";
+// export class Enemy {
+// constructor(gameArea) {
+// this.gameArea = gameArea;
+// this.left= Math.floor(Math.random() * 250);
+// this.top=60;
+// this.width=50;
+// this.height=50;
+// this.element= document.createElement("img");
+// this.element.src= imgSrcTwo;
+// this.element.style.width= `${this.width}px`;
+// this.element.style.height= `${this.height}px`;
+// this.element.style.left= `${this.left}px`;
+// this.element.style.top= `${this.top}px`;
+// this.element.style.position= "absolute";
+// this.gameArea.appendChild(this.element);
+// }
+// }
 
-},{"./game.js":"9hTyP"}]},["fyTPu","dV6cC"], "dV6cC", "parcelRequirea506")
+},{}]},["h5jYF","d4MNF"], "d4MNF", "parcelRequirea506")
 
-//# sourceMappingURL=index.e82f28a0.js.map
+//# sourceMappingURL=index.b62c11a8.js.map
