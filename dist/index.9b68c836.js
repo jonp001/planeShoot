@@ -559,21 +559,20 @@ function hmrAccept(bundle, id) {
 },{}],"9hTyP":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-// import { Enemy } from "./enemy.js";
 parcelHelpers.export(exports, "Game", ()=>Game);
 var _planeJs = require("./plane.js");
+var _enemyJs = require("./enemy.js");
 class Game {
     constructor(){
         this.gameArea = document.getElementById("game-area");
         this.gameScore = document.getElementById("score");
         this.gameLives = document.getElementById("lives");
         this.gameFinished = document.getElementById("game-finished");
-        // this.enemy= new Enemy();
         this.score = 0;
         this.lives = 4;
         this.gameOver = false;
         this.plane = new (0, _planeJs.Plane)(this.gameArea, 300, 300, 650, 100, 150, "../../images/plane.png");
-        this.enemy = [];
+        this.enemy = new (0, _enemyJs.Enemy)(this.gameArea, 100, 150, 300, 650, "../../images/enemy.png");
         this.score = 0;
         this.lives = 4;
         this.gameOver = false;
@@ -595,6 +594,6 @@ class Game {
     }
 }
 
-},{"./plane.js":"g00R2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["gQxC0","9hTyP"], "9hTyP", "parcelRequirea506")
+},{"./plane.js":"g00R2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./enemy.js":"d4MNF"}]},["gQxC0","9hTyP"], "9hTyP", "parcelRequirea506")
 
 //# sourceMappingURL=index.9b68c836.js.map

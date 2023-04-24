@@ -1,5 +1,6 @@
 import {Plane} from "./plane.js";
-// import { Enemy } from "./enemy.js";
+import { Enemy } from "./enemy.js";
+
 
 export class Game {
     constructor() {
@@ -7,7 +8,6 @@ export class Game {
         this.gameScore=document.getElementById("score");
         this.gameLives=document.getElementById("lives");
         this.gameFinished=document.getElementById("game-finished");
-        // this.enemy= new Enemy();
         this.score=0;
         this.lives=4;
         this.gameOver= false;
@@ -20,7 +20,15 @@ export class Game {
         150,
         "../../images/plane.png",
         );
-        this.enemy= [];
+        this.enemy= new Enemy( //(gameArea: any, height: any, width: any, top: any, left: any, enemyImg: any): Enemy
+            this.gameArea,
+            100,
+            150,
+            300,
+            650,
+            "../../images/enemy.png",
+        );
+         
         this.score=0;
         this.lives= 4;
         this.gameOver= false;

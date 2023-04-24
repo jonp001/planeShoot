@@ -557,25 +557,29 @@ function hmrAccept(bundle, id) {
 }
 
 },{}],"d4MNF":[function(require,module,exports) {
-// import imgSrcTwo from "../../images/enemy.png";
-// export class Enemy {
-// constructor(gameArea) {
-// this.gameArea = gameArea;
-// this.left= Math.floor(Math.random() * 250);
-// this.top=60;
-// this.width=50;
-// this.height=50;
-// this.element= document.createElement("img");
-// this.element.src= imgSrcTwo;
-// this.element.style.width= `${this.width}px`;
-// this.element.style.height= `${this.height}px`;
-// this.element.style.left= `${this.left}px`;
-// this.element.style.top= `${this.top}px`;
-// this.element.style.position= "absolute";
-// this.gameArea.appendChild(this.element);
-// }
-// }
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Enemy", ()=>Enemy);
+var _enemyPng = require("../../images/enemy.png");
+var _enemyPngDefault = parcelHelpers.interopDefault(_enemyPng);
+class Enemy {
+    constructor(gameArea, height, width, top, left, imgSrcTwo){
+        this.gameArea = gameArea;
+        this.height = height;
+        this.width = width;
+        this.top = top;
+        this.left = left;
+        this.gameArea = document.getElementById("game-area");
+        this.elementTwo = document.createElement("img");
+        this.elementTwo.src = imgSrcTwo;
+        this.elementTwo.setAttribute("id", "enemyImg");
+        this.gameArea.appendChild(this.elementTwo);
+    }
+}
 
-},{}]},["h5jYF","d4MNF"], "d4MNF", "parcelRequirea506")
+},{"../../images/enemy.png":"344el","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"344el":[function(require,module,exports) {
+module.exports = require("2cf3321d6d807fd1").getBundleURL("aRHSf") + "enemy.cc8bfb0f.png" + "?" + Date.now();
+
+},{"2cf3321d6d807fd1":"lgJ39"}]},["h5jYF","d4MNF"], "d4MNF", "parcelRequirea506")
 
 //# sourceMappingURL=index.b62c11a8.js.map
