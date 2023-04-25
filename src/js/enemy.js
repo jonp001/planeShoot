@@ -9,6 +9,7 @@ export class Enemy {
         this.width=width;
         this.top=top;
         this.left=left;
+        this.enemies=[];
 
         this.gameArea= document.getElementById("game-area");
         this.element=document.createElement("img");
@@ -16,9 +17,9 @@ export class Enemy {
         this.element.setAttribute("id", "enemyImage");
         this.gameArea.appendChild(this.element);
 
-        this.width=60;
+        this.width=50;
         this.element.style.width= `${this.width}px`;
-        this.height=60;
+        this.height=50;
         this.element.style.height= `${this.height}px`
 
 
@@ -27,4 +28,17 @@ export class Enemy {
         this.element.style.top= `${this.top}px`
 
     }
+    
+updatePosition() {
+    this.element.style.left= `${this.left}px`
+    this.element.style.top= `${this.top}px`
+}
+
+move() {
+    this.top+= 2;
+    this.left+= 2;
+
+    this.updatePosition();
+}
+
 }

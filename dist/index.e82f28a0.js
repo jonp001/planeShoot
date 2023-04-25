@@ -565,6 +565,7 @@ window.onload = function() {
     game = new (0, _gameJs.Game)();
     // console.log("game: ", game)
     game.gameLoop();
+    enemy.enemies();
     // }
     function handleKeydown(e) {
         const key = e.key;

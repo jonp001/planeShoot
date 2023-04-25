@@ -17,6 +17,8 @@ let game;
 
     // console.log("game: ", game)
     game.gameLoop();
+
+    enemy.enemies();
     
 // }
 
