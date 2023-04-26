@@ -9,12 +9,13 @@ export class Enemy {
         this.width=width;
         this.top=top;
         this.left=left;
-        this.enemies=[];
+        this.directionX=0;
+        this.directionY=0;
 
         this.gameArea= document.getElementById("game-area");
         this.element=document.createElement("img");
         this.element.src= imgSrcTwo;
-        this.element.setAttribute("id", "enemyImage");
+        this.element.setAttribute("class", "enemyImage");
         this.gameArea.appendChild(this.element);
 
         this.width=50;
@@ -23,10 +24,10 @@ export class Enemy {
         this.element.style.height= `${this.height}px`
 
 
-        this.element.style.position="absolute";
+        // this.element.style.position="absolute";
         this.element.style.left= `${this.left}px`
         this.element.style.top= `${this.top}px`
-
+        this.gameArea.appendChild(this.element);
     }
     
 updatePosition() {
@@ -34,11 +35,36 @@ updatePosition() {
     this.element.style.top= `${this.top}px`
 }
 
-move() {
+moveUpdate() {
     this.top+= 2;
     this.left+= 2;
 
+
+    if( this.left < 50){
+        this.left = 50;
+    }
+
+    if( this.left + this.width > this.gameArea.offsetWidth -50) {
+        this.left= this.gameArea.offsetWidth - this.width -50;
+    }
+
+
     this.updatePosition();
 }
+enemyMove() {
+    setInterval(movingEnemy, 2000)
+    movingEnemy() 
+        const moveTop= this.top +=2;
+        const moveLeft= this.left +=2;
 
+        for( let i=0; i < this.enemies.length; i++ ) {
+            if( this.enemies[i].top < 651 && this.enemies[i].left < 301 ) {
+                this.enemies[i].top = moveTop
+                this.enemies[i].left = moveLeft;
+            } else if( this.enemies[i].top > 10 && this.enemies[i].left > 10){
+                this.enemies[i].top--
+                this.enemies[i].left--
+            }
+        }
+    }
 }

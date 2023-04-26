@@ -572,14 +572,6 @@ class Game {
         this.lives = 4;
         this.gameOver = false;
         this.plane = new (0, _planeJs.Plane)(this.gameArea, 300, 300, 650, 100, 150, "../../images/plane.png");
-        // this.enemy= new Enemy( //(gameArea: any, height: any, width: any, top: any, left: any, enemyImg: any): Enemy
-        //     this.gameArea,
-        //     100,
-        //     150,
-        //     300,
-        //     650,
-        //     "../../images/enemy.png",
-        // );
         this.enemies = [];
         this.score = 0;
         this.lives = 4;
@@ -600,17 +592,25 @@ class Game {
     update() {
         console.log("Game updating...");
         this.plane.move();
-        for(let row = 0; row < 5; row++)for(let col = 0; col < 11; col++){
-            const enemy1 = new (0, _enemyJs.Enemy)({
-                x: col * 60 + 50,
-                y: row * 60 + 50
-            });
-            this.enemies.push(enemy1);
+        let enemy;
+        for(let row = 0; row < 5; row++){
+            for(let col = 0; col < 11; col++){
+                enemy = new (0, _enemyJs.Enemy)({
+                    x: col * 60 + 50,
+                    y: row * 60 + 50
+                });
+                this.enemies.push(enemy);
+                if (this.enemies.length == 48) {
+                    this.enemies = [];
+                    this.gameArea.appendChild(this.enemies);
+                }
+            }
+            enemy.moveUpdate();
+        // enemy.enemyMove();
         }
-        enemy.move();
     }
 }
 
-},{"./plane.js":"g00R2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./enemy.js":"d4MNF"}]},["gQxC0","9hTyP"], "9hTyP", "parcelRequirea506")
+},{"./plane.js":"g00R2","./enemy.js":"d4MNF","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["gQxC0","9hTyP"], "9hTyP", "parcelRequirea506")
 
 //# sourceMappingURL=index.9b68c836.js.map

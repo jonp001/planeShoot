@@ -563,23 +563,123 @@ parcelHelpers.export(exports, "Enemy", ()=>Enemy);
 var _enemyPng = require("../../images/enemy.png");
 var _enemyPngDefault = parcelHelpers.interopDefault(_enemyPng);
 class Enemy {
-    constructor(gameArea, height, width, top, left, imgSrcTwo){
+    constructor(gameArea, height, width, top, left){
         this.gameArea = gameArea;
         this.height = height;
         this.width = width;
         this.top = top;
         this.left = left;
+        this.directionX = 0;
+        this.directionY = 0;
         this.gameArea = document.getElementById("game-area");
-        this.elementTwo = document.createElement("img");
-        this.elementTwo.src = imgSrcTwo;
-        this.elementTwo.setAttribute("id", "enemyImg");
-        this.gameArea.appendChild(this.elementTwo);
+        this.element = document.createElement("img");
+        this.element.src = (0, _enemyPngDefault.default);
+        this.element.setAttribute("class", "enemyImage");
+        this.gameArea.appendChild(this.element);
+        this.width = 50;
+        this.element.style.width = `${this.width}px`;
+        this.height = 50;
+        this.element.style.height = `${this.height}px`;
+        // this.element.style.position="absolute";
+        this.element.style.left = `${this.left}px`;
+        this.element.style.top = `${this.top}px`;
+        this.gameArea.appendChild(this.element);
+    }
+    updatePosition() {
+        this.element.style.left = `${this.left}px`;
+        this.element.style.top = `${this.top}px`;
+    }
+    moveUpdate() {
+        this.top += 2;
+        this.left += 2;
+        if (this.left < 50) this.left = 50;
+        if (this.left + this.width > this.gameArea.offsetWidth - 50) this.left = this.gameArea.offsetWidth - this.width - 50;
+        this.updatePosition();
+    }
+    enemyMove() {
+        setInterval(movingEnemy, 2000);
+        movingEnemy();
+        const moveTop = this.top += 2;
+        const moveLeft = this.left += 2;
+        for(let i = 0; i < this.enemies.length; i++){
+            if (this.enemies[i].top < 651 && this.enemies[i].left < 301) {
+                this.enemies[i].top = moveTop;
+                this.enemies[i].left = moveLeft;
+            } else if (this.enemies[i].top > 10 && this.enemies[i].left > 10) {
+                this.enemies[i].top--;
+                this.enemies[i].left--;
+            }
+        }
     }
 }
 
 },{"../../images/enemy.png":"344el","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"344el":[function(require,module,exports) {
 module.exports = require("2cf3321d6d807fd1").getBundleURL("aRHSf") + "enemy.cc8bfb0f.png" + "?" + Date.now();
 
-},{"2cf3321d6d807fd1":"lgJ39"}]},["h5jYF","d4MNF"], "d4MNF", "parcelRequirea506")
+},{"2cf3321d6d807fd1":"lgJ39"}],"lgJ39":[function(require,module,exports) {
+"use strict";
+var bundleURL = {};
+function getBundleURLCached(id) {
+    var value = bundleURL[id];
+    if (!value) {
+        value = getBundleURL();
+        bundleURL[id] = value;
+    }
+    return value;
+}
+function getBundleURL() {
+    try {
+        throw new Error();
+    } catch (err) {
+        var matches = ("" + err.stack).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^)\n]+/g);
+        if (matches) // The first two stack frames will be this function and getBundleURLCached.
+        // Use the 3rd one, which will be a runtime in the original bundle.
+        return getBaseURL(matches[2]);
+    }
+    return "/";
+}
+function getBaseURL(url) {
+    return ("" + url).replace(/^((?:https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/.+)\/[^/]+$/, "$1") + "/";
+} // TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
+function getOrigin(url) {
+    var matches = ("" + url).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^/]+/);
+    if (!matches) throw new Error("Origin not found");
+    return matches[0];
+}
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+exports.getOrigin = getOrigin;
+
+},{}],"gkKU3":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, "__esModule", {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}]},["h5jYF","d4MNF"], "d4MNF", "parcelRequirea506")
 
 //# sourceMappingURL=index.b62c11a8.js.map
