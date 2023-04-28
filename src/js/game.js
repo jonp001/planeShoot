@@ -44,10 +44,10 @@ gameLoop() {
         return;
     }
 console.log(this.enemies.length)
-    if ( this.enemies.length <= 48){
+    
         this.update();
         window.requestAnimationFrame(() => this.gameLoop());
-    }
+    
     // this.update();
     // window.requestAnimationFrame(() => this.gameLoop());
 }
@@ -55,41 +55,30 @@ console.log(this.enemies.length)
 update() {
     console.log("Game updating...");
     this.plane.move();
-   
-    let enemy;
-   
-        for(let row=0; row < 5; row++) {
-            for(let col= 0; col < 11; col++) {
-                 enemy= new Enemy({
-                    // x: col * 50 + 50,
-                    // y: row * 50 + 50,
-                    // t: 20,
-                    // l: 20,
-                    
-                   
-                })
-            this.enemies.push(enemy)
-           
-         
-            if(this.enemies.length === 48){
-
-            this.enemies.forEach( enemy => {
-                const node= document.createElement(enemy);
-                
-                this.gameArea.appendChild(node);
-            })
-                // this.enemies= [];
-         
-                // this.gameArea.append(...this.enemies)
-                
-            }
-            
+  
+    for (let row = 0; row < 5; row++) {
+      for (let col = 0; col < 11; col++) {
+        const enemy = new Enemy({
+          // x: col * 50 + 50,
+          // y: row * 50 + 50,
+          // t: 20,
+          // l: 20,
+        });
+        this.enemies.push(enemy);
+  
+        if (this.enemies.length === 48) {
+          for (const enemy of this.enemies) {
+            enemy.move()
+            const node = document.createElement("div");
+            node.classList.add("enemy");
+            node.style.left = `${enemy.x}px`;
+            node.style.top = `${enemy.y}px`;
+            node.style.width = `${enemy.width}px`;
+            node.style.height = `${enemy.height}px`;
+            node.style.backgroundImage = `url(${enemy.image})`;
+            this.gameArea.appendChild(node);
+          }
         }
-        // enemy.move();
-      
-        // enemy.enemyMove();
+      }
     }
-    
-}
-}
-
+  }

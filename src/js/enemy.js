@@ -54,6 +54,7 @@ move() {
 
     this.updatePosition();
 }
+// }
 // enemyMove() {
 //     setInterval(movingEnemy, 2000)
 //     movingEnemy() 
@@ -72,4 +73,4 @@ move() {
 //     }
 
 
-}
+

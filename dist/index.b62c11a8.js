@@ -559,7 +559,23 @@ function hmrAccept(bundle, id) {
 },{}],"d4MNF":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Enemy", ()=>Enemy);
+parcelHelpers.export(exports, "Enemy", ()=>Enemy) // }
+ // enemyMove() {
+ //     setInterval(movingEnemy, 2000)
+ //     movingEnemy() 
+ //         const moveTop= this.top +=2;
+ //         const moveLeft= this.left +=2;
+ //         for( let i=0; i < this.enemies.length; i++ ) {
+ //             if( this.enemies[i].top < 651 && this.enemies[i].left < 301 ) {
+ //                 this.enemies[i].top = moveTop
+ //                 this.enemies[i].left = moveLeft;
+ //             } else if( this.enemies[i].top > 10 && this.enemies[i].left > 10){
+ //                 this.enemies[i].top--
+ //                 this.enemies[i].left--
+ // //             }
+ //         }
+ //     }
+;
 var _enemyPng = require("../../images/enemy.png");
 var _enemyPngDefault = parcelHelpers.interopDefault(_enemyPng);
 class Enemy {

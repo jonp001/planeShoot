@@ -589,25 +589,29 @@ class Game {
         console.log("game is looping");
         if (this.gameOver) return;
         console.log(this.enemies.length);
-        if (this.enemies.length <= 48) {
-            this.update();
-            window.requestAnimationFrame(()=>this.gameLoop());
-        }
+        this.update();
+        window.requestAnimationFrame(()=>this.gameLoop());
     // this.update();
     // window.requestAnimationFrame(() => this.gameLoop());
     }
     update() {
         console.log("Game updating...");
         this.plane.move();
-        let enemy;
         for(let row = 0; row < 5; row++)for(let col = 0; col < 11; col++){
-            enemy = new (0, _enemyJs.Enemy)({
+            const enemy = new (0, _enemyJs.Enemy)({
             });
             this.enemies.push(enemy);
-            if (this.enemies.length === 48) this.enemies.forEach((enemy)=>{
-                const node = document.createElement(enemy);
+            if (this.enemies.length === 48) for (const enemy of this.enemies){
+                enemy.move();
+                const node = document.createElement("div");
+                node.classList.add("enemy");
+                node.style.left = `${enemy.x}px`;
+                node.style.top = `${enemy.y}px`;
+                node.style.width = `${enemy.width}px`;
+                node.style.height = `${enemy.height}px`;
+                node.style.backgroundImage = `url(${enemy.image})`;
                 this.gameArea.appendChild(node);
-            });
+            }
         }
     }
 }
