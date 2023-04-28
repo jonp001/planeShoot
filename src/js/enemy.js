@@ -7,8 +7,10 @@ export class Enemy {
         this.gameArea=gameArea;
         this.top=top;
         this.left=left;
-        this.directionX=0;
-        this.directionY=0;
+        this.x=0;
+        this.y=0;
+
+        
 
         this.gameArea= document.getElementById("game-area");
         this.element=document.createElement("img");
@@ -37,17 +39,20 @@ updatePosition() {
 }
 
 move() {
-    this.top+= 2;
+
     this.left+= 2;
+    // this.element.style.left= `${this.left}px`
 
+    this.top+= 2;
+    // this.element.style.top= `${this.top}px`
 
-    if( this.left < 50){
-        this.left = 50;
-    }
+    // if( this.left < 50){
+    //     this.left = 50;
+    // }
 
-    if( this.left + this.width > this.gameArea.offsetWidth -50) {
-        this.left= this.gameArea.offsetWidth - this.width -50;
-    }
+    // if( this.left + this.width > this.gameArea.offsetWidth -50) {
+    //     this.left= this.gameArea.offsetWidth - this.width -50;
+    // }
 
 
 
