@@ -558,6 +558,7 @@ function hmrAccept(bundle, id) {
 
 },{}],"dV6cC":[function(require,module,exports) {
 var _gameJs = require("./game.js");
+var _missleJs = require("./missle.js");
 window.onload = function() {
     let game;
     // function startGame() {
@@ -568,6 +569,7 @@ window.onload = function() {
     // }
     function handleKeydown(e) {
         const key = e.key;
+        let shoot1;
         console.log("key: ", key);
         const possibleKeystrokes = [
             "ArrowLeft",
@@ -584,10 +586,18 @@ window.onload = function() {
                     // console.log("hello: ", game.plane)
                     game.plane.directionX = 1;
                     break;
+                // case "ArrowUp":
+                //   game.plane.directionY = -1;
+                //   break;
+                // case "ArrowDown":
+                //   game.plane.directionY = 1;
+                //   break;
+                case "Space":
             }
         }
     }
     window.addEventListener("keydown", handleKeydown);
+    document.addEventListener("keyup", shoot);
 // const plane= new Plane();
 // const updateGame =() => {
 //     if (key["ArrowLeft"] {
@@ -597,6 +607,6 @@ window.onload = function() {
 //     }
 };
 
-},{"./game.js":"9hTyP"}]},["fyTPu","dV6cC"], "dV6cC", "parcelRequirea506")
+},{"./game.js":"9hTyP","./missle.js":"5eSbI"}]},["fyTPu","dV6cC"], "dV6cC", "parcelRequirea506")
 
 //# sourceMappingURL=index.e82f28a0.js.map

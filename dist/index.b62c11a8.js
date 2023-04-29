@@ -562,26 +562,33 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Enemy", ()=>Enemy);
 var _enemyPng = require("../../images/enemy.png");
 var _enemyPngDefault = parcelHelpers.interopDefault(_enemyPng);
+const left = "left";
+const right = "right";
 class Enemy {
-    constructor(gameArea, top, left){
+    constructor(gameArea, top, left, width, height){
         this.gameArea = gameArea;
         this.top = top;
         this.left = left;
+        this.width = width;
+        this.height = height;
         this.x = 0;
         this.y = 0;
+        this.direction = "left";
+        this.speed = 1;
         this.gameArea = document.getElementById("game-area");
         this.element = document.createElement("img");
         this.element.src = (0, _enemyPngDefault.default);
         this.element.setAttribute("class", "enemyImage");
         this.gameArea.appendChild(this.element);
+        this.enemyImg = document.getElementsByClassName("enemyImage");
         this.width = 50;
         this.element.style.width = `${this.width}px`;
         this.height = 50;
         this.element.style.height = `${this.height}px`;
         // this.element.style.position="absolute";
-        this.left = 20;
-        this.element.style.left = `${this.left}px`;
-        this.top = 20;
+        // this.left= 20;
+        // this.element.style.left= `${this.left}px`
+        this.top = 150;
         this.element.style.top = `${this.top}px`;
         this.gameArea.appendChild(this.element);
     }
@@ -590,13 +597,25 @@ class Enemy {
         this.element.style.top = `${this.top}px`;
     }
     move() {
-        this.left += 2;
-        // this.element.style.left= `${this.left}px`
-        this.top += 2;
-        // this.element.style.top= `${this.top}px`
-        // if( this.left < 50){
-        //     this.left = 50;
-        // }
+        this.x += 0.5;
+        this.left = this.x + "px";
+        this.element.style.left = this.left;
+        this.element.style.position = "absolute";
+        // if( this.element.x + this.element.width >= this.gameArea.width || this.element.x <= 0) {
+        //     this.x *= -2;
+        //     for( let i=0; i< this.element.length; i++ ) {
+        //         this.element[i].y +=this.element.height;
+        //  if( this.left + this.width > this.gameArea.offsetWidth -50) {
+        // this.left= this.gameArea.offsetWidth - this.width -50;
+        //  }
+        // // this.x += 1;
+        // // this.left= this.x + "px";
+        // // this.element.style.left= this.left  
+        // this.y += .1;
+        // this.top = this.y + "px";
+        // this.element.style.top= this.top    
+        // this.element.style.position="absolute"
+        // // this.element.style.top= `${this.top}px`
         // if( this.left + this.width > this.gameArea.offsetWidth -50) {
         //     this.left= this.gameArea.offsetWidth - this.width -50;
         // }

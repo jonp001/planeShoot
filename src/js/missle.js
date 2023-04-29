@@ -35,27 +35,52 @@ export class Missle {
    
     }
 
-move() {
-    this.left += this.directionX;
-    this.top += this.directionY;
 
-    if( this.left < 50){
-        this.left = 50;
+shoot(e) {
+if( e.code === "Space"){
+    let missle = {
+        x: plane.x + planeWidth*15/32,
+        y: plane.y,
+        width: tileSize/8,
+        height: tileSize/2,
+
     }
-
-    if( this.left + this.width > this.gameArea.offsetWidth -50) {
-        this.left= this.gameArea.offsetWidth - this.width -50;
-    }
-    
-    this.updatePosition();
-    } 
-
-    updatePosition() {
-        this.element.style.left = `${this.left}px`;
-        this.element.style.right = `${this.right}px`;
-
-    } 
 }
+game.missles.push(missle);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+// move() {
+//     this.left += this.directionX;
+//     this.top += this.directionY;
+
+//     if( this.left < 50){
+//         this.left = 50;
+//     }
+
+//     if( this.left + this.width > this.gameArea.offsetWidth -50) {
+//         this.left= this.gameArea.offsetWidth - this.width -50;
+//     }
+    
+//     this.updatePosition();
+//     } 
+
+//     updatePosition() {
+//         this.element.style.left = `${this.left}px`;
+//         this.element.style.right = `${this.right}px`;
+
+//     } 
+// }
 
 
 

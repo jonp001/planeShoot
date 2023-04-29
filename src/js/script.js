@@ -1,5 +1,5 @@
 import { Game } from "./game.js";
-
+import { Missle } from "./missle.js";
 
 
 
@@ -24,7 +24,7 @@ let game;
 
 function handleKeydown(e) {
     const key = e.key;
-
+    let shoot;
     console.log("key: ", key);
 
     const possibleKeystrokes = ["ArrowLeft", "ArrowRight"];
@@ -47,11 +47,16 @@ function handleKeydown(e) {
             // case "ArrowDown":
             //   game.plane.directionY = 1;
             //   break;
-            }
+            case "Space":
+              
+        }
+    
+
   }
 }
 
 window.addEventListener("keydown", handleKeydown);
+document.addEventListener("keyup", shoot)
 
 
 
