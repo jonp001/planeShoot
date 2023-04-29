@@ -610,7 +610,7 @@ class Plane {
     }
 }
 
-},{"../../images/plane.png":"aepTe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./missle":"5eSbI"}],"aepTe":[function(require,module,exports) {
+},{"../../images/plane.png":"aepTe","./missle":"5eSbI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aepTe":[function(require,module,exports) {
 module.exports = require("1d355a623d4c8cf4").getBundleURL("5pu5T") + "plane.c24ce8af.png" + "?" + Date.now();
 
 },{"1d355a623d4c8cf4":"lgJ39"}],"5eSbI":[function(require,module,exports) {

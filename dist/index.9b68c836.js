@@ -650,6 +650,6 @@ class Game {
     }
 }
 
-},{"./plane.js":"g00R2","./enemy.js":"d4MNF","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./missle.js":"5eSbI"}]},["gQxC0","9hTyP"], "9hTyP", "parcelRequirea506")
+},{"./plane.js":"g00R2","./enemy.js":"d4MNF","./missle.js":"5eSbI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["gQxC0","9hTyP"], "9hTyP", "parcelRequirea506")
 
 //# sourceMappingURL=index.9b68c836.js.map
