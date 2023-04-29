@@ -56,7 +56,7 @@ function handleKeydown(e) {
 }
 
 window.addEventListener("keydown", handleKeydown);
-document.addEventListener("keyup", shoot)
+// document.addEventListener("keyup", shoot)
 
 
 

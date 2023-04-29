@@ -569,7 +569,7 @@ window.onload = function() {
     // }
     function handleKeydown(e) {
         const key = e.key;
-        let shoot1;
+        let shoot;
         console.log("key: ", key);
         const possibleKeystrokes = [
             "ArrowLeft",
@@ -597,7 +597,7 @@ window.onload = function() {
         }
     }
     window.addEventListener("keydown", handleKeydown);
-    document.addEventListener("keyup", shoot);
+// document.addEventListener("keyup", shoot)
 // const plane= new Plane();
 // const updateGame =() => {
 //     if (key["ArrowLeft"] {

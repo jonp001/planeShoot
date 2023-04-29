@@ -36,18 +36,18 @@ export class Missle {
     }
 
 
-shoot(e) {
-if( e.code === "Space"){
-    let missle = {
-        x: plane.x + planeWidth*15/32,
-        y: plane.y,
-        width: tileSize/8,
-        height: tileSize/2,
+// shoot(e) {
+// if( e.code === "Space"){
+//     let missle = {
+//         x: plane.x + planeWidth*15/32,
+//         y: plane.y,
+//         width: tileSize/8,
+//         height: tileSize/2,
 
-    }
-}
-game.missles.push(missle);
-}
+//     }
+// }
+// game.missles.push(missle);
+// }
 
 
 
@@ -83,4 +83,4 @@ game.missles.push(missle);
 // }
 
 
-
+}

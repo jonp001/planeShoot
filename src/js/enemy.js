@@ -50,8 +50,12 @@ move() {
 
 
         this.x += 0.5;
-
+        console.log("left", this.left)
+        console.log("width", this.width)
+        console.log("offsetwidth" , this.gameArea.offsetWidth)
+    
         this.left= this.x + "px";
+
         this.element.style.left= this.left    
         this.element.style.position="absolute"
 
@@ -61,12 +65,14 @@ move() {
         //     for( let i=0; i< this.element.length; i++ ) {
         //         this.element[i].y +=this.element.height;
         
-        
+        console.log("hi")    
 
 
-    //  if( this.left + this.width > this.gameArea.offsetWidth -50) {
-    // this.left= this.gameArea.offsetWidth - this.width -50;
-    //  }
+     if( this.left + this.width > this.gameArea.offsetWidth -50) {
+    this.left= this.gameArea.offsetWidth - this.width -50;
+  
+}
+
     
     // // this.x += 1;
     // // this.left= this.x + "px";

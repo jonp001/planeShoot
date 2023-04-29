@@ -616,23 +616,7 @@ module.exports = require("1d355a623d4c8cf4").getBundleURL("5pu5T") + "plane.c24c
 },{"1d355a623d4c8cf4":"lgJ39"}],"5eSbI":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Missle", ()=>Missle) // move() {
- //     this.left += this.directionX;
- //     this.top += this.directionY;
- //     if( this.left < 50){
- //         this.left = 50;
- //     }
- //     if( this.left + this.width > this.gameArea.offsetWidth -50) {
- //         this.left= this.gameArea.offsetWidth - this.width -50;
- //     }
- //     this.updatePosition();
- //     } 
- //     updatePosition() {
- //         this.element.style.left = `${this.left}px`;
- //         this.element.style.right = `${this.right}px`;
- //     } 
- // }
-;
+parcelHelpers.export(exports, "Missle", ()=>Missle);
 class Missle {
     constructor(gameArea, left, right, top, width, height){
         this.gameArea = gameArea;
@@ -658,17 +642,6 @@ class Missle {
         this.element.style.position = "absolute";
         this.element.style.left = `${this.left}px`;
         this.element.style.top = `${this.top}px`;
-    }
-    shoot(e) {
-        if (e.code === "Space") {
-            let missle1 = {
-                x: plane.x + planeWidth * 15 / 32,
-                y: plane.y,
-                width: tileSize / 8,
-                height: tileSize / 2
-            };
-        }
-        game.missles.push(missle);
     }
 }
 
