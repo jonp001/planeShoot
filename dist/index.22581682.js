@@ -573,7 +573,6 @@ class Plane {
         this.height = height;
         this.directionX = 0;
         this.directionY = 0;
-        this.speed = 5;
         this.gameArea = document.getElementById("game-area");
         this.element = document.createElement("img");
         this.element.src = (0, _planePngDefault.default);
@@ -583,10 +582,6 @@ class Plane {
         this.element.style.width = `${this.width}px`;
         this.height = 60;
         this.element.style.height = `${this.height}px`;
-        // this.positionX= window.innerWidth / 6.5
-        // this.element.style.left= `${this.positionX}px`
-        // this.positionY= window.innerHeight - 400
-        // this.element.style.top= `${this.positionY}px`
         this.element.style.position = "absolute";
         this.element.style.left = `${this.left}px`;
         this.element.style.top = `${this.top}px`;
@@ -627,21 +622,14 @@ class Missle {
         this.height = height;
         this.directionX = 0;
         this.directionY = 0;
-        this.speed = 5;
+        this.speed = 1;
         this.element = document.createElement("div");
         this.element.setAttribute("class", "missles");
         this.gameArea.appendChild(this.element);
-        this.width = 60;
+        this.width = 5;
         this.element.style.width = `${this.width}px`;
-        this.height = 60;
+        this.height = 5;
         this.element.style.height = `${this.height}px`;
-        // this.positionX= window.innerWidth / 6.5
-        // this.element.style.left= `${this.positionX}px`
-        // this.positionY= window.innerHeight - 400
-        // this.element.style.top= `${this.positionY}px`
-        this.element.style.position = "absolute";
-        this.element.style.left = `${this.left}px`;
-        this.element.style.top = `${this.top}px`;
     }
 }
 

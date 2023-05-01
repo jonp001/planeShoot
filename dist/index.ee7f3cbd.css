@@ -6,9 +6,22 @@ body {
 #game-area {
   background-image: url("background.1f14848b.jpg");
   padding: 50px;
+  display: flex;
 }
 
 #planeImg {
+  display: flex;
+  position: absolute;
+  top: auto;
+}
+
+#game-area > .enemy {
+  width: 50px;
+  height: 50px;
+  content: url("enemy.cc8bfb0f.png");
+  padding-top: 150px;
+  padding-left: 75px;
+  animation: 5s linear 1s infinite alternate slidein;
   position: absolute;
 }
 

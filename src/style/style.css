@@ -5,21 +5,30 @@ body{
 
 #game-area{
     background-image: url(../../images/background.jpg);
-    padding:50px;
-    /* display: flex; */
+    padding: 50px;
+    display: flex;
+   
+    
+   
 }
 
 #planeImg{
     position: absolute;
+    display: flex;
+    top:auto
     
     }
 
-/* .enemyImage{
-         
-         flex-direction: column;
-         flex-wrap: wrap;
-         align-items: flex-start;
-         justify-content: space-between;
-         align-content: space-around;
 
-    } */
+
+#game-area > .enemy{
+/* background-color: crimson; */
+  position: absolute;
+  padding-top: 150px;
+  padding-left: 75px;
+  width: 50px;
+  height: 50px;
+  content: url("../../images/enemy.png");
+ 
+  animation: 5s linear 1s infinite alternate slidein;
+    }

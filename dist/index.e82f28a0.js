@@ -560,13 +560,10 @@ function hmrAccept(bundle, id) {
 var _gameJs = require("./game.js");
 var _missleJs = require("./missle.js");
 window.onload = function() {
-    let game;
-    // function startGame() {
     console.log("Game started");
-    game = new (0, _gameJs.Game)();
+    const game = new (0, _gameJs.Game)();
     // console.log("game: ", game)
     game.gameLoop();
-    // }
     function handleKeydown(e) {
         const key = e.key;
         let shoot;
@@ -586,25 +583,11 @@ window.onload = function() {
                     // console.log("hello: ", game.plane)
                     game.plane.directionX = 1;
                     break;
-                // case "ArrowUp":
-                //   game.plane.directionY = -1;
-                //   break;
-                // case "ArrowDown":
-                //   game.plane.directionY = 1;
-                //   break;
-                case "Space":
             }
         }
     }
     window.addEventListener("keydown", handleKeydown);
 // document.addEventListener("keyup", shoot)
-// const plane= new Plane();
-// const updateGame =() => {
-//     if (key["ArrowLeft"] {
-//         plane.moveL();
-//     } else if(key["ArrowRight"]) {
-//         plane.moveR();
-//     }
 };
 
 },{"./game.js":"9hTyP","./missle.js":"5eSbI"}]},["fyTPu","dV6cC"], "dV6cC", "parcelRequirea506")

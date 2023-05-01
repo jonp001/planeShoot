@@ -22,7 +22,7 @@ export class Game {
         150,
         "../../images/plane.png"
       );
-  
+        
       this.enemies = [];
       this.missles= [];
       this.width = 600;
@@ -31,95 +31,67 @@ export class Game {
       this.gameArea.style.height = `${this.height}px`;
       this.x = 0;
       this.y = 0;
-  
+      this.numRows
       // create all the enemy elements
-      for (let row = 0; row < 4; row++) {
-        for (let col = 0; col < 12; col++) {
-          const enemy = new Enemy(
-            this.gameArea,
-            row * 50 + 50,
-            col * 50 + 50,
-          );
+      for ( let i= 0; i< 4; i++ ) {
+        for( let j=0; j < 7; j++ ) {
+          const enemy= new Enemy( i, j);
+          this.gameArea.appendChild(enemy.getElement(".enemy"));
           this.enemies.push(enemy);
+          console.log(this.enemies, "was inserted")
+          
         }
       }
+      this.direction = 1;
+      this.animateEnemies= this.animateEnemies.bind(this);
+     
     }
-  
+
+    animateEnemies() {
+      for ( let i= 0; i< this.enemies.length; i++){
+        const enemy= this.enemies[i];
+        if( enemy.col === 7 && this.direction === 1){
+          this.direction = -1;
+          enemy.row += 1;
+        } else if( enemy.col ===0 && this.direction === -1){
+          this.direction= 1;
+          enemy.row += 1;
+        }
+        if( this.direction === 1) {
+          enemy.moveRight();
+        } else  { 
+          enemy.moveLeft();
+        }
+        enemy.element.style.top =enemy.row * 60 + "px";
+        
+       
+      }
+      // window.requestAnimationFrame(this.animateEnemies) 
+    }
+  // startGame() {
+  //   setInterval(this.animateEnemies, 1000)
+  // } 
+
     gameLoop() {
       if (this.gameOver) {
         return;
       }
-    
-      this.update();
-  
-
-
-      // for (let i = 0; i < this.enemies.length; i++) {
-      //   const enemy= this.enemies[i]
-      //   enemy.move();
+     
+      setInterval(this.animateEnemies, 1000)
       
-      //   if( obstacle.top > this.gameArea.height){
-
-      //     this.score ++;
-      //     this.gameScore.innerText= this.score;
-  
-      //     enemy.element.remove();
-      //     this.enemies.splice(0,1);
-      //     i--;
-      //   } else if( this.plane.didCollide(enemy)){
-  
-      //     this.lives --;
-      //     this.gameLives.innerText= this.lives;
-  
-      //     enemy.element.remove();
-      //     this.enemies.splice(0,1);
-      //     i--;
-      //   }
-      // }
-      // if( this.lives=== 0){
-      //   this.endGame();
-      // }
-      // if(Math.random() > 0.99 && this.enemies.length < 1){
-      //   this.enemies.push(new Enemy(this.gameArea));
-      // }
+      this.update();
+      
      
       window.requestAnimationFrame(() => this.gameLoop());
+     
     }
   
     update() {
       this.plane.move();
       
-      for (let i = 0; i < this.enemies.length; i++) {
-        const enemy= this.enemies[i]
-        
-        enemy.move()
-      
-        if( enemy.top > this.height){
-
-          this.score ++;
-          this.gameScore.innerText= this.score;
-  
-          enemy.element.remove();
-          this.enemies.splice(i,1);
-          i--;
-        } else if( this.plane.didCollide(enemy)){
-  
-          this.lives --;
-          this.gameLives.innerText= this.lives;
-  
-          enemy.element.remove();
-          this.enemies.splice(i,1);
-          i--;
-        }
-      }
-      if( this.lives=== 0){
-        this.endGame();
-      }
-    
-      
     }
   
-
+//what happends when game ends
   endGame() {
 
     this.plane.element.remove();
