@@ -584,7 +584,13 @@ window.onload = function() {
                     // console.log("hello: ", game.plane)
                     game.plane.directionX = 1;
                     break;
+                case " ":
+                    console.log("shoot pressed");
+                    plane.shootMissle();
             }
+            document.addEventListener("keydown", (event)=>{
+                if (event.code === "Space") plane.shootMissile();
+            });
         }
     }
     window.addEventListener("keydown", handleKeydown);

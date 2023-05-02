@@ -12,7 +12,9 @@ export class Plane {
     this.height = height;
     this.directionX = 0;
     this.directionY = 0;
-   
+   this.missles=[];
+   this.missleSpeed=10;
+   this.missleAngle=0;
 
     this.container = document.querySelector(".container");
     this.element = document.createElement("img");
@@ -52,6 +54,18 @@ export class Plane {
     this.element.style.right = `${this.right}px`;
   }
 
+updateMissles() {
+  for (let i = 0; i < this.missiles.length; i++) {
+    const missile = this.missiles[i];
+    missile.move();
+  }
+}
+  shootMissle() {
+    const missle = new Missle(this.directionX, this.directionY, this.missleSpeed, this.missleAngle)
+    this.missles.push(missle);
+  }
+
+
   didCollide(enemy) {
     const planeRect = this.element.getBoundingClientRect();
     const enemyRect = enemy.element.getBoundingClientRect();
@@ -68,4 +82,5 @@ export class Plane {
     }
   }
 }
+
 

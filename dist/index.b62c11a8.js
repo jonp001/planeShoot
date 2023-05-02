@@ -592,15 +592,6 @@ class Enemy {
     atRightEdge() {
         return this.col === 7;
     }
-    atBottom() {
-        if (this.element.style.top >= 600) {
-            this.enemy.forEach((enemy)=>{
-                enemy.remove();
-            });
-            gameOver = true;
-            game.endGame();
-        }
-    }
     getElement() {
         return this.element;
     }

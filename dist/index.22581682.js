@@ -573,6 +573,9 @@ class Plane {
         this.height = height;
         this.directionX = 0;
         this.directionY = 0;
+        this.missles = [];
+        this.missleSpeed = 10;
+        this.missleAngle = 0;
         this.container = document.querySelector(".container");
         this.element = document.createElement("img");
         this.element.src = (0, _planePngDefault.default);
@@ -597,6 +600,16 @@ class Plane {
         this.element.style.left = `${this.left}px`;
         this.element.style.right = `${this.right}px`;
     }
+    updateMissles() {
+        for(let i = 0; i < this.missiles.length; i++){
+            const missile = this.missiles[i];
+            missile.move();
+        }
+    }
+    shootMissle() {
+        const missle = new (0, _missle.Missle)(this.directionX, this.directionY, this.missleSpeed, this.missleAngle);
+        this.missles.push(missle);
+    }
     didCollide(enemy) {
         const planeRect = this.element.getBoundingClientRect();
         const enemyRect = enemy.element.getBoundingClientRect();
@@ -609,38 +622,29 @@ class Plane {
 module.exports = require("1d355a623d4c8cf4").getBundleURL("5pu5T") + "plane.c24ce8af.png" + "?" + Date.now();
 
 },{"1d355a623d4c8cf4":"lgJ39"}],"5eSbI":[function(require,module,exports) {
-// export class Missle {
-//     constructor(gameArea,left, right, top, width, height) {
-//         this.gameArea= gameArea;
-//         this.left= left;
-//         this.right= right;
-//         this.top=top;
-//         this.width= width;
-//         this.height= height;
-//         this.directionX=0;
-//         this.directionY=0;
-//         this.speed=1;
-//         this.element = document.createElement("div");
-//         this.element.setAttribute("class", "missles");
-//         this.gameArea.appendChild(this.element);
-//         this.width= 5;
-//         this.element.style.width= `${this.width}px`;
-//         this.height=5;
-//         this.element.style.height= `${this.height}px`;
-//     }
-//possible method to shoot
-// shoot(e) {
-// if( e.code === "Space"){
-//     let missle = {
-//         x: plane.x + planeWidth*15/32,
-//         y: plane.y,
-//         width: tileSize/8,
-//         height: tileSize/2,
-//     }
-// }
-// game.missles.push(missle);
-// }
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Missle", ()=>Missle);
+class Missle {
+    constructor(x, y, angle, speed){
+        this.height = 5;
+        this.width = 5;
+        this.top = 0;
+        this.x = x;
+        this.y = y;
+        this.speed = speed;
+        this.angle = angle;
+        this.element = document.createElement("div");
+        this.element.classList.add("missle");
+        this.container = document.querySelector(".container");
+        this.missle.appendChild(this.element);
+    }
+    move() {
+        this.x += Math.cos(this.angle) * this.speed;
+        this.y += Math.sin(this.angle) * this.speed;
+    }
+}
 
-},{}]},["4xSgZ","g00R2"], "g00R2", "parcelRequirea506")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["4xSgZ","g00R2"], "g00R2", "parcelRequirea506")
 
 //# sourceMappingURL=index.22581682.js.map

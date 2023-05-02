@@ -8,6 +8,7 @@ export class Game {
       this.container = document.querySelector(".container")
       this.gameScore = document.getElementById("score");
       this.gameLives = document.getElementById("lives");
+      this.gameOverScreen= document.querySelector("#game-container")
       this.body= document.querySelector("body");
       this.gameFinished = document.getElementById("game-finished");
       this.score = 0;
@@ -24,23 +25,22 @@ export class Game {
       );
       
       this.enemies = [];
-      this.missles= [];
       this.width = 600;
       this.container.style.width = `${this.width}px`;
       this.height = 600;
       this.container.style.height = `${this.height}px`;
+      
 
       // create all the enemy elements
       for ( let i= 0; i< 4; i++ ) {
         for( let j=0; j < 7; j++ ) {
           const enemy= new Enemy( i, j);
           this.container.appendChild(enemy.getElement());
-          this.enemies.push(enemy);
-         
-          
+          this.enemies.push(enemy); 
         }
       }
       
+    
       this.direction = 1;
       this.animateEnemies= this.animateEnemies.bind(this);
      
@@ -67,18 +67,7 @@ export class Game {
         }
         enemy.element.style.top =enemy.row * 60 + "px";
 
-        if( enemy.top > this.height){
-         this.gameOver= true;
-         this.endGame()
-
-      
-
-        // if( enemy.style.top > this.height){
-        //   enemy.remove()
-          this.enemies.splice(i--, j--)
-       
-      }
-    
+        
   } 
     }
     gameLoop() {
@@ -86,23 +75,29 @@ export class Game {
         return;
       }
     
-      setInterval(this.animateEnemies, 1000)
+      setInterval(this.animateEnemies, 1000*2)
       
       this.update();
-      
-      window.requestAnimationFrame(() => this.gameLoop());
+
+     
+     
+     window.requestAnimationFrame(() => this.gameLoop());
      
     }
   
     update() {
       this.plane.move();
+     
+   
+  
       for( let i=0; i<this.enemies.length; i++){
         const enemy= this.enemies[i];
       
       if(this.plane.didCollide(enemy)) {
         this.clearEnemies()
-        this.health = 0;
+        this.lives = 0;
         this.gameOver= true;
+        this.endGame()
       }
     }
   }
@@ -112,7 +107,8 @@ clearEnemies() {
     this.container.removeChild(enemy)
   })
 } 
- 
+
+
 //what happends when game ends
   endGame() {
 
@@ -125,11 +121,13 @@ clearEnemies() {
 // GameOver screen
   this.gameOver= true;
 
-  this.gameArea.style.display= "none";
+  this.container.style.display= "none";
   
   this.gameFinished.style.display= "flex";
 
-  this.body.style.backgroundImage= "url(../../images/gameover.jpg)";
+  this.gameOverScreen.style.display= "none";
+
+  this.body.style.backgroundImage= "url(../../images/gameOver.png)";
  }
     }
   
