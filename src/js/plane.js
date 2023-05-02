@@ -3,8 +3,8 @@ import { Missle } from "./missle";
 
 
 export class Plane {
-  constructor(gameArea, left, right, top, width, height) {
-    this.gameArea = gameArea;
+  constructor(container, left, right, top, width, height) {
+    this.container= container;
     this.left = left;
     this.right = right;
     this.top = top;
@@ -14,11 +14,11 @@ export class Plane {
     this.directionY = 0;
    
 
-    this.gameArea = document.getElementById("game-area");
+    this.container = document.querySelector(".container");
     this.element = document.createElement("img");
     this.element.src = imgSrc;
     this.element.setAttribute("id", "planeImg");
-    this.gameArea.appendChild(this.element);
+    this.container.appendChild(this.element);
 
     this.width = 60;
     this.element.style.width = `${this.width}px`;
@@ -40,8 +40,8 @@ export class Plane {
       this.left = 50;
     }
 
-    if (this.left + this.width > this.gameArea.offsetWidth - 50) {
-      this.left = this.gameArea.offsetWidth - this.width - 50;
+    if (this.left + this.width > this.container.offsetWidth - 50) {
+      this.left = this.container.offsetWidth - this.width - 50;
     }
 
     this.updatePosition();

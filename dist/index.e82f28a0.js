@@ -570,7 +570,8 @@ window.onload = function() {
         console.log("key: ", key);
         const possibleKeystrokes = [
             "ArrowLeft",
-            "ArrowRight"
+            "ArrowRight",
+            " "
         ];
         if (possibleKeystrokes.includes(key)) {
             e.preventDefault();
@@ -587,7 +588,6 @@ window.onload = function() {
         }
     }
     window.addEventListener("keydown", handleKeydown);
-// document.addEventListener("keyup", shoot)
 };
 
 },{"./game.js":"9hTyP","./missle.js":"5eSbI"}]},["fyTPu","dV6cC"], "dV6cC", "parcelRequirea506")

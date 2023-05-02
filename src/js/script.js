@@ -25,7 +25,7 @@ function handleKeydown(e) {
     let shoot;
     console.log("key: ", key);
 
-    const possibleKeystrokes = ["ArrowLeft", "ArrowRight"];
+    const possibleKeystrokes = ["ArrowLeft", "ArrowRight", " "];
 
     if(possibleKeystrokes.includes(key)) {
         e.preventDefault();
@@ -41,9 +41,7 @@ function handleKeydown(e) {
               break;
            
 
-// missle keyevent 
-            // case "Space":
-            //   missle.shoot
+
               
         }
     
@@ -52,7 +50,7 @@ function handleKeydown(e) {
 }
 
 window.addEventListener("keydown", handleKeydown);
-// document.addEventListener("keyup", shoot)
+
 
 };
 

@@ -566,9 +566,12 @@ class Enemy {
     constructor(row, col){
         this.row = row;
         this.col = col;
-        this.element = document.createElement("img");
+        this.top = 0;
+        this.element = document.createElement("div");
         this.element.classList.add("enemy");
         this.element.src = (0, _enemyPngDefault.default);
+        this.container = document.querySelectorAll(".container");
+        this.allEnemies = document.querySelectorAll(".enemy");
         //this sets the 
         this.element.style.top = this.row * 60 + "px";
         this.element.style.left = this.col * 80 + "px";
@@ -576,10 +579,12 @@ class Enemy {
     moveRight() {
         this.col += 1;
         this.element.style.left = this.col * 50 + "px";
+        this.speed = 0;
     }
     moveLeft() {
         this.col -= 1;
         this.element.style.left = this.col * 100 + "px";
+        this.speed = 0;
     }
     atLeftEdge() {
         return this.col === 0;
@@ -587,8 +592,14 @@ class Enemy {
     atRightEdge() {
         return this.col === 7;
     }
-    atBottomScreen() {
-        if (Plane.element.style.top > this.element.top) return this.element;
+    atBottom() {
+        if (this.element.style.top >= 600) {
+            this.enemy.forEach((enemy)=>{
+                enemy.remove();
+            });
+            gameOver = true;
+            game.endGame();
+        }
     }
     getElement() {
         return this.element;

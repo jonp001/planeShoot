@@ -3,10 +3,15 @@ body{
     color: white;
 }
 
-#game-area{
+.container{
     background-image: url(../../images/background.jpg);
-    padding: 50px;
+    width: 600px;
+    height: 600px; 
+    padding: 60px;
+    position: relative;
     display: flex;
+    flex-wrap: wrap;
+    border: 8px solid white;
    
     
    
@@ -15,17 +20,17 @@ body{
 #planeImg{
     position: absolute;
     display: flex;
-    top:auto
-    
-    }
+     }
 
 
 
-#game-area > .enemy{
+.container > .enemy{
 /* background-color: crimson; */
   position: absolute;
-  padding-top: 150px;
-  padding-left: 75px;
+
+  padding-top: 20px;
+  padding-left: 80px;  
+ min-height: fit-content;
   width: 50px;
   height: 50px;
   content: url("../../images/enemy.png");

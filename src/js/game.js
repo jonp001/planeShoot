@@ -5,7 +5,7 @@ import { Missle } from "./missle.js";
 
 export class Game {
     constructor() {
-      this.gameArea = document.getElementById("game-area");
+      this.container = document.querySelector(".container")
       this.gameScore = document.getElementById("score");
       this.gameLives = document.getElementById("lives");
       this.body= document.querySelector("body");
@@ -14,7 +14,7 @@ export class Game {
       this.lives = 4;
       this.gameOver = false;
       this.plane = new Plane(
-        this.gameArea,
+        this.container,
         300,
         300,
         650,
@@ -22,26 +22,25 @@ export class Game {
         150,
         "../../images/plane.png"
       );
-        
+      
       this.enemies = [];
       this.missles= [];
       this.width = 600;
-      this.gameArea.style.width = `${this.width}px`;
-      this.height = 500;
-      this.gameArea.style.height = `${this.height}px`;
-      this.x = 0;
-      this.y = 0;
-      this.numRows
+      this.container.style.width = `${this.width}px`;
+      this.height = 600;
+      this.container.style.height = `${this.height}px`;
+
       // create all the enemy elements
       for ( let i= 0; i< 4; i++ ) {
         for( let j=0; j < 7; j++ ) {
           const enemy= new Enemy( i, j);
-          this.gameArea.appendChild(enemy.getElement(".enemy"));
+          this.container.appendChild(enemy.getElement());
           this.enemies.push(enemy);
-          console.log(this.enemies, "was inserted")
+         
           
         }
       }
+      
       this.direction = 1;
       this.animateEnemies= this.animateEnemies.bind(this);
      
@@ -58,39 +57,62 @@ export class Game {
           enemy.row += 1;
         }
         if( this.direction === 1) {
+          // enemy.atLeftEdge();
           enemy.moveRight();
+          
         } else  { 
+          // enemy.atRightEdge();
           enemy.moveLeft();
+          
         }
         enemy.element.style.top =enemy.row * 60 + "px";
-        
+
+        if( enemy.top > this.height){
+         this.gameOver= true;
+         this.endGame()
+
+      
+
+        // if( enemy.style.top > this.height){
+        //   enemy.remove()
+          this.enemies.splice(i--, j--)
        
       }
-      // window.requestAnimationFrame(this.animateEnemies) 
+    
+  } 
     }
-  // startGame() {
-  //   setInterval(this.animateEnemies, 1000)
-  // } 
-
     gameLoop() {
       if (this.gameOver) {
         return;
       }
-     
+    
       setInterval(this.animateEnemies, 1000)
       
       this.update();
       
-     
       window.requestAnimationFrame(() => this.gameLoop());
      
     }
   
     update() {
       this.plane.move();
+      for( let i=0; i<this.enemies.length; i++){
+        const enemy= this.enemies[i];
       
+      if(this.plane.didCollide(enemy)) {
+        this.clearEnemies()
+        this.health = 0;
+        this.gameOver= true;
+      }
     }
-  
+  }
+
+clearEnemies() {
+  Array.from (document.querySelectorAll(".enemy")).forEach((enemy) => {
+    this.container.removeChild(enemy)
+  })
+} 
+ 
 //what happends when game ends
   endGame() {
 
@@ -109,4 +131,5 @@ export class Game {
 
   this.body.style.backgroundImage= "url(../../images/gameover.jpg)";
  }
-}
+    }
+  

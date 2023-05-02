@@ -1,31 +1,31 @@
-export class Missle {
+// export class Missle {
 
-    constructor(gameArea,left, right, top, width, height) {
-        this.gameArea= gameArea;
-        this.left= left;
-        this.right= right;
-        this.top=top;
-        this.width= width;
-        this.height= height;
-        this.directionX=0;
-        this.directionY=0;
-        this.speed=1;
+//     constructor(gameArea,left, right, top, width, height) {
+//         this.gameArea= gameArea;
+//         this.left= left;
+//         this.right= right;
+//         this.top=top;
+//         this.width= width;
+//         this.height= height;
+//         this.directionX=0;
+//         this.directionY=0;
+//         this.speed=1;
 
 
       
-        this.element = document.createElement("div");
+//         this.element = document.createElement("div");
       
-        this.element.setAttribute("class", "missles");
-        this.gameArea.appendChild(this.element);
+//         this.element.setAttribute("class", "missles");
+//         this.gameArea.appendChild(this.element);
 
-        this.width= 5;
-        this.element.style.width= `${this.width}px`;
-        this.height=5;
-        this.element.style.height= `${this.height}px`;
+//         this.width= 5;
+//         this.element.style.width= `${this.width}px`;
+//         this.height=5;
+//         this.element.style.height= `${this.height}px`;
 
 
    
-    }
+//     }
 
 //possible method to shoot
 // shoot(e) {
@@ -42,4 +42,3 @@ export class Missle {
 // }
 
 
-}
