@@ -32,6 +32,13 @@ export class Plane {
     this.element.style.position = "absolute";
     this.element.style.left = `${this.left}px`;
     this.element.style.top = `${this.top}px`;
+
+
+    document.addEventListener('keydown', event => {
+      if (event.code === 'Space') {
+      plane.shootMissile();
+       }
+     });
   }
 
   move() {
@@ -57,14 +64,22 @@ export class Plane {
 updateMissles() {
   for (let i = 0; i < this.missiles.length; i++) {
     const missile = this.missiles[i];
-    missile.move();
+    missile.moveMissle();
+
+    //this removes missles once it goes out of container 
+    if (missile.x < 0 || missile.x > this.container.innerWidth ||
+      missile.y < 0 || missile.y > this.container.innerHeight) {
+    this.missiles.splice(i, 1);
   }
+ }
 }
+
   shootMissle() {
     const missle = new Missle(this.directionX, this.directionY, this.missleSpeed, this.missleAngle)
     this.missles.push(missle);
   }
-
+  
+  
 
   didCollide(enemy) {
     const planeRect = this.element.getBoundingClientRect();

@@ -78,18 +78,20 @@ export class Game {
       setInterval(this.animateEnemies, 1000*2)
       
       this.update();
-
+      
+      
      
-     
+    
      window.requestAnimationFrame(() => this.gameLoop());
      
     }
   
     update() {
       this.plane.move();
+      
      
-   
-  
+     
+
       for( let i=0; i<this.enemies.length; i++){
         const enemy= this.enemies[i];
       

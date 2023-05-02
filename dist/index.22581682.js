@@ -588,6 +588,9 @@ class Plane {
         this.element.style.position = "absolute";
         this.element.style.left = `${this.left}px`;
         this.element.style.top = `${this.top}px`;
+        document.addEventListener("keydown", (event)=>{
+            if (event.code === "Space") plane.shootMissile();
+        });
     }
     move() {
         this.left += this.directionX;
@@ -603,7 +606,9 @@ class Plane {
     updateMissles() {
         for(let i = 0; i < this.missiles.length; i++){
             const missile = this.missiles[i];
-            missile.move();
+            missile.moveMissle();
+            //this removes missles once it goes out of container 
+            if (missile.x < 0 || missile.x > this.container.innerWidth || missile.y < 0 || missile.y > this.container.innerHeight) this.missiles.splice(i, 1);
         }
     }
     shootMissle() {
@@ -639,7 +644,7 @@ class Missle {
         this.container = document.querySelector(".container");
         this.missle.appendChild(this.element);
     }
-    move() {
+    moveMissle() {
         this.x += Math.cos(this.angle) * this.speed;
         this.y += Math.sin(this.angle) * this.speed;
     }
