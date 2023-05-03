@@ -142,13 +142,13 @@
       this[globalName] = mainExports;
     }
   }
-})({"4xSgZ":[function(require,module,exports) {
+})({"beAXG":[function(require,module,exports) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
-module.bundle.HMR_BUNDLE_ID = "3f06a1a022581682";
+module.bundle.HMR_BUNDLE_ID = "6bb8dbb5100cd787";
 "use strict";
 /* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, chrome, browser, globalThis, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
 import type {
@@ -556,74 +556,73 @@ function hmrAccept(bundle, id) {
     });
 }
 
-},{}],"g00R2":[function(require,module,exports) {
+},{}],"5eSbI":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Plane", ()=>Plane);
-var _planePng = require("../../images/plane.png");
-var _planePngDefault = parcelHelpers.interopDefault(_planePng);
-var _missleJs = require("./missle.js");
-class Plane {
-    constructor(container, left, right, top){
+parcelHelpers.export(exports, "Missile", ()=>Missile);
+var _missilePng = require("../../images/missile.png");
+var _missilePngDefault = parcelHelpers.interopDefault(_missilePng);
+class Missile {
+    constructor(x, y, speed, angle, container){
+        this.x = x;
+        this.y = y;
+        this.speed = speed;
+        this.angle = angle;
         this.container = container;
-        this.left = left;
-        this.right = right;
-        this.top = top;
-        this.directionX = 0;
-        this.directionY = 0;
-        this.missiles = [];
-        this.missileSpeed = 10;
-        this.missileAngle = 0;
-        this.container = document.querySelector(".container");
-        this.element = document.createElement("img");
-        this.element.src = (0, _planePngDefault.default);
-        this.element.setAttribute("id", "planeImg");
+        this.element = document.createElement("div");
+        this.element.src = (0, _missilePngDefault.default);
+        this.element.className = "missile";
         this.container.appendChild(this.element);
-        this.width = 60;
-        this.element.style.width = `${this.width}px`;
-        this.height = 60;
-        this.element.style.height = `${this.height}px`;
-        this.element.style.position = "absolute";
-        this.element.style.left = `${this.left}px`;
-        this.element.style.top = `${this.top}px`;
+        this.updatePosition();
     }
-    move() {
-        this.left += this.directionX;
-        this.right -= this.directionX;
-        if (this.left < 50) this.left = 50;
-        if (this.left + this.width > this.container.offsetWidth - 50) this.left = this.container.offsetWidth - this.width - 50;
+    moveMissile() {
+        this.y -= this.speed * Math.cos(this.angle);
+        this.x += this.speed * Math.sin(this.angle);
         this.updatePosition();
     }
     updatePosition() {
-        this.element.style.left = `${this.left}px`;
-        this.element.style.right = `${this.right}px`;
-    }
-    updateMissiles() {
-        for(let i = 0; i < this.missiles.length; i++){
-            const missile = this.missiles[i];
-            missile.moveMissile();
-            //this removes missles once it goes out of container 
-            if (missile.x < 0 || missile.x > this.container.clientWidth || missile.y < 0 || missile.y > this.container.clientHeight) {
-                this.missiles.splice(i, 1);
-                i--;
-            }
-        }
-    }
-    shootMissle() {
-        const missile = new (0, _missleJs.Missile)(this.left + this.width / 2, this.top, this.missileSpeed, this.missileAngle, this.container);
-        this.missiles.push(missile);
-    }
-    didCollide(enemy) {
-        const planeRect = this.element.getBoundingClientRect();
-        const enemyRect = enemy.element.getBoundingClientRect();
-        if (planeRect.left < enemyRect.left && planeRect.right > enemyRect.left && planeRect.top < enemyRect.top && planeRect.bottom > enemyRect.top) return true;
-        else return false;
+        this.element.style.left = `${this.x}px`;
+        this.element.style.top = `${this.y}px`;
     }
 }
 
-},{"../../images/plane.png":"aepTe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./missle.js":"5eSbI"}],"aepTe":[function(require,module,exports) {
-module.exports = require("1d355a623d4c8cf4").getBundleURL("5pu5T") + "plane.c24ce8af.png" + "?" + Date.now();
+},{"../../images/missile.png":"jg4Gn","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jg4Gn":[function(require,module,exports) {
+module.exports = require("99330c2af85228b4").getBundleURL("9foW9") + "missile.148c1123.png" + "?" + Date.now();
 
-},{"1d355a623d4c8cf4":"lgJ39"}]},["4xSgZ","g00R2"], "g00R2", "parcelRequirea506")
+},{"99330c2af85228b4":"lgJ39"}],"lgJ39":[function(require,module,exports) {
+"use strict";
+var bundleURL = {};
+function getBundleURLCached(id) {
+    var value = bundleURL[id];
+    if (!value) {
+        value = getBundleURL();
+        bundleURL[id] = value;
+    }
+    return value;
+}
+function getBundleURL() {
+    try {
+        throw new Error();
+    } catch (err) {
+        var matches = ("" + err.stack).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^)\n]+/g);
+        if (matches) // The first two stack frames will be this function and getBundleURLCached.
+        // Use the 3rd one, which will be a runtime in the original bundle.
+        return getBaseURL(matches[2]);
+    }
+    return "/";
+}
+function getBaseURL(url) {
+    return ("" + url).replace(/^((?:https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/.+)\/[^/]+$/, "$1") + "/";
+} // TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
+function getOrigin(url) {
+    var matches = ("" + url).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^/]+/);
+    if (!matches) throw new Error("Origin not found");
+    return matches[0];
+}
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+exports.getOrigin = getOrigin;
 
-//# sourceMappingURL=index.22581682.js.map
+},{}]},["beAXG"], null, "parcelRequirea506")
+
+//# sourceMappingURL=index.100cd787.js.map

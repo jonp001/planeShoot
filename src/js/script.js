@@ -1,5 +1,5 @@
 import { Game } from "./game.js";
-import { Missle } from "./missle.js";
+import { Missile } from "./missle.js";
 
 
 

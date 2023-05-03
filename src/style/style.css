@@ -38,6 +38,11 @@ body{
   animation: 5s linear 1s infinite alternate slidein;
     }
 
-.missle{
-    background-color: crimson;
+.missile{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    /* background-color: crimson; */
+    content: url("../../images/missile.png") ;
+    animation: 5s linear 1s infinite alternate slidein;
 }

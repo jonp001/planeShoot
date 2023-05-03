@@ -1,3 +1,4 @@
+import missleSrc from "../../images/missile.png"
 export class Missile {
 constructor(x, y, speed, angle, container) {
   this.x = x;
@@ -5,8 +6,10 @@ constructor(x, y, speed, angle, container) {
   this.speed = speed;
   this.angle = angle;
   this.container = container;
+ 
 
   this.element = document.createElement("div");
+  this.element.src= missleSrc
   this.element.className = "missile";
   this.container.appendChild(this.element);
 

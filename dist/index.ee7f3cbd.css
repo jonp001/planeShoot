@@ -31,8 +31,12 @@ body {
   position: absolute;
 }
 
-.missle {
-  background-color: #dc143c;
+.missile {
+  width: 20px;
+  height: 20px;
+  content: url("missile.148c1123.png");
+  animation: 5s linear 1s infinite alternate slidein;
+  position: absolute;
 }
 
 /*# sourceMappingURL=index.ee7f3cbd.css.map */
