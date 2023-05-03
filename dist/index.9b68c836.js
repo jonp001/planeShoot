@@ -599,10 +599,8 @@ class Game {
                 this.direction = 1;
                 enemy.row += 1;
             }
-            if (this.direction === 1) // enemy.atLeftEdge();
-            enemy.moveRight();
-            else // enemy.atRightEdge();
-            enemy.moveLeft();
+            if (this.direction === 1) enemy.moveRight();
+            else enemy.moveLeft();
             enemy.element.style.top = enemy.row * 60 + "px";
         }
     }
@@ -644,6 +642,6 @@ class Game {
     }
 }
 
-},{"./plane.js":"g00R2","./enemy.js":"d4MNF","./missle.js":"5eSbI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["gQxC0","9hTyP"], "9hTyP", "parcelRequirea506")
+},{"./plane.js":"g00R2","./enemy.js":"d4MNF","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./missle.js":"5eSbI"}]},["gQxC0","9hTyP"], "9hTyP", "parcelRequirea506")
 
 //# sourceMappingURL=index.9b68c836.js.map

@@ -562,20 +562,18 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Plane", ()=>Plane);
 var _planePng = require("../../images/plane.png");
 var _planePngDefault = parcelHelpers.interopDefault(_planePng);
-var _missle = require("./missle");
+var _missleJs = require("./missle.js");
 class Plane {
-    constructor(container, left, right, top, width, height){
+    constructor(container, left, right, top){
         this.container = container;
         this.left = left;
         this.right = right;
         this.top = top;
-        this.width = width;
-        this.height = height;
         this.directionX = 0;
         this.directionY = 0;
-        this.missles = [];
-        this.missleSpeed = 10;
-        this.missleAngle = 0;
+        this.missiles = [];
+        this.missileSpeed = 10;
+        this.missileAngle = 0;
         this.container = document.querySelector(".container");
         this.element = document.createElement("img");
         this.element.src = (0, _planePngDefault.default);
@@ -588,9 +586,6 @@ class Plane {
         this.element.style.position = "absolute";
         this.element.style.left = `${this.left}px`;
         this.element.style.top = `${this.top}px`;
-        document.addEventListener("keydown", (event)=>{
-            if (event.code === "Space") plane.shootMissile();
-        });
     }
     move() {
         this.left += this.directionX;
@@ -603,17 +598,20 @@ class Plane {
         this.element.style.left = `${this.left}px`;
         this.element.style.right = `${this.right}px`;
     }
-    updateMissles() {
+    updateMissiles() {
         for(let i = 0; i < this.missiles.length; i++){
             const missile = this.missiles[i];
-            missile.moveMissle();
+            missile.moveMissile();
             //this removes missles once it goes out of container 
-            if (missile.x < 0 || missile.x > this.container.innerWidth || missile.y < 0 || missile.y > this.container.innerHeight) this.missiles.splice(i, 1);
+            if (missile.x < 0 || missile.x > this.container.clientWidth || missile.y < 0 || missile.y > this.container.clientHeight) {
+                this.missiles.splice(i, 1);
+                i--;
+            }
         }
     }
     shootMissle() {
-        const missle = new (0, _missle.Missle)(this.directionX, this.directionY, this.missleSpeed, this.missleAngle);
-        this.missles.push(missle);
+        const missile = new (0, _missleJs.Missile)(this.left + this.width / 2, this.top, this.missileSpeed, this.missileAngle, this.container);
+        this.missiles.push(missile);
     }
     didCollide(enemy) {
         const planeRect = this.element.getBoundingClientRect();
@@ -623,30 +621,33 @@ class Plane {
     }
 }
 
-},{"../../images/plane.png":"aepTe","./missle":"5eSbI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aepTe":[function(require,module,exports) {
+},{"../../images/plane.png":"aepTe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./missle.js":"5eSbI"}],"aepTe":[function(require,module,exports) {
 module.exports = require("1d355a623d4c8cf4").getBundleURL("5pu5T") + "plane.c24ce8af.png" + "?" + Date.now();
 
 },{"1d355a623d4c8cf4":"lgJ39"}],"5eSbI":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Missle", ()=>Missle);
-class Missle {
-    constructor(x, y, angle, speed){
-        this.height = 5;
-        this.width = 5;
-        this.top = 0;
+parcelHelpers.export(exports, "Missile", ()=>Missile);
+class Missile {
+    constructor(x, y, speed, angle, container){
         this.x = x;
         this.y = y;
         this.speed = speed;
         this.angle = angle;
+        this.container = container;
         this.element = document.createElement("div");
-        this.element.classList.add("missle");
-        this.container = document.querySelector(".container");
-        this.missle.appendChild(this.element);
+        this.element.className = "missile";
+        this.container.appendChild(this.element);
+        this.updatePosition();
     }
-    moveMissle() {
-        this.x += Math.cos(this.angle) * this.speed;
-        this.y += Math.sin(this.angle) * this.speed;
+    moveMissile() {
+        this.y -= this.speed * Math.cos(this.angle);
+        this.x += this.speed * Math.sin(this.angle);
+        this.updatePosition();
+    }
+    updatePosition() {
+        this.element.style.left = `${this.x}px`;
+        this.element.style.top = `${this.y}px`;
     }
 }
 

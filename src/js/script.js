@@ -39,8 +39,10 @@ function handleKeydown(e) {
                 // console.log("hello: ", game.plane)
               game.plane.directionX = 1;
               break;
-            case " ":
-              console.log("shoot pressed")
+              case " ":
+                console.log("shoot pressed")
+                game.plane.shootMissle();
+                break;
                        
     }
   }

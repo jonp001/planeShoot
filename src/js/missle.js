@@ -1,24 +1,26 @@
-export class Missle {
-constructor(x, y, angle, speed ) {
-this.height= 5;
-this.width= 5;
-this.top= 0;
-this.x=x;
-this.y=y;
-this.speed= speed;
-this.angle= angle;
+export class Missile {
+constructor(x, y, speed, angle, container) {
+  this.x = x;
+  this.y = y;
+  this.speed = speed;
+  this.angle = angle;
+  this.container = container;
 
-this.element = document.createElement("div"); 
-this.element.classList.add ("missle");
+  this.element = document.createElement("div");
+  this.element.className = "missile";
+  this.container.appendChild(this.element);
 
-this.container= document.querySelector(".container")
-this.missle.appendChild(this.element);
-
+  this.updatePosition();
 }
 
-moveMissle() {
-this.x += Math.cos(this.angle) * this.speed;
-this.y += Math.sin(this.angle) * this.speed;
-  }
+moveMissile() {
+  this.y -= this.speed * Math.cos(this.angle);
+  this.x += this.speed * Math.sin(this.angle);
+  this.updatePosition();
 }
 
+updatePosition() {
+  this.element.style.left = `${this.x}px`;
+  this.element.style.top = `${this.y}px`;
+}
+}

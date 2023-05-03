@@ -1,20 +1,18 @@
 import imgSrc from "../../images/plane.png";
-import { Missle } from "./missle";
+import { Missile } from "./missle.js";
 
 
 export class Plane {
-  constructor(container, left, right, top, width, height) {
+  constructor(container, left, right, top) {
     this.container= container;
     this.left = left;
     this.right = right;
     this.top = top;
-    this.width = width;
-    this.height = height;
     this.directionX = 0;
     this.directionY = 0;
-   this.missles=[];
-   this.missleSpeed=10;
-   this.missleAngle=0;
+   this.missiles=[];
+   this.missileSpeed=10;
+   this.missileAngle=0;
 
     this.container = document.querySelector(".container");
     this.element = document.createElement("img");
@@ -33,12 +31,6 @@ export class Plane {
     this.element.style.left = `${this.left}px`;
     this.element.style.top = `${this.top}px`;
 
-
-    document.addEventListener('keydown', event => {
-      if (event.code === 'Space') {
-      plane.shootMissile();
-       }
-     });
   }
 
   move() {
@@ -61,22 +53,23 @@ export class Plane {
     this.element.style.right = `${this.right}px`;
   }
 
-updateMissles() {
+updateMissiles() {
   for (let i = 0; i < this.missiles.length; i++) {
     const missile = this.missiles[i];
-    missile.moveMissle();
+    missile.moveMissile();
 
     //this removes missles once it goes out of container 
-    if (missile.x < 0 || missile.x > this.container.innerWidth ||
-      missile.y < 0 || missile.y > this.container.innerHeight) {
+    if (missile.x < 0 || missile.x > this.container.clientWidth ||
+      missile.y < 0 || missile.y > this.container.clientHeight) {
     this.missiles.splice(i, 1);
+    i--;
   }
  }
 }
 
   shootMissle() {
-    const missle = new Missle(this.directionX, this.directionY, this.missleSpeed, this.missleAngle)
-    this.missles.push(missle);
+    const missile = new Missile(this.left + this.width/2 , this.top, this.missileSpeed, this.missileAngle, this.container);
+    this.missiles.push(missile);
   }
   
   

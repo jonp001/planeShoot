@@ -1,7 +1,7 @@
 
 import { Plane } from "./plane.js";
 import { Enemy } from "./enemy.js";
-import { Missle } from "./missle.js";
+import { Missile } from "./missle.js";
 
 export class Game {
     constructor() {
@@ -57,12 +57,10 @@ export class Game {
           enemy.row += 1;
         }
         if( this.direction === 1) {
-          // enemy.atLeftEdge();
-          enemy.moveRight();
+         enemy.moveRight();
           
         } else  { 
-          // enemy.atRightEdge();
-          enemy.moveLeft();
+         enemy.moveLeft();
           
         }
         enemy.element.style.top =enemy.row * 60 + "px";

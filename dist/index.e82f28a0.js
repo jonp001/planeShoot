@@ -586,6 +586,8 @@ window.onload = function() {
                     break;
                 case " ":
                     console.log("shoot pressed");
+                    game.plane.shootMissle();
+                    break;
             }
         }
     }
