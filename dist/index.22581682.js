@@ -593,22 +593,10 @@ class Plane {
         if (this.left < 50) this.left = 50;
         if (this.left + this.width > this.container.offsetWidth - 50) this.left = this.container.offsetWidth - this.width - 50;
         this.updatePosition();
-        this.updateMissiles();
     }
     updatePosition() {
         this.element.style.left = `${this.left}px`;
         this.element.style.right = `${this.right}px`;
-    }
-    updateMissiles() {
-        for(let i = 0; i < this.missiles.length; i++){
-            const missile = this.missiles[i];
-            missile.moveMissile();
-            //this removes missles once it goes out of container 
-            if (missile.x < 0 || missile.x > this.container.clientWidth || missile.y < 0 || missile.y > this.container.clientHeight) {
-                this.missiles.splice(i, 1);
-                i--;
-            }
-        }
     }
     shootMissle() {
         const missile = new (0, _missleJs.Missile)(this.left + this.width / 2, this.top, this.missileSpeed, this.missileAngle, this.container);

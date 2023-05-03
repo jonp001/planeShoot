@@ -12,14 +12,13 @@ window.onload= function () {
 
    const game = new Game();
 
-    // console.log("game: ", game)
     game.gameLoop();
 
- 
-   
-    
+  document.addEventListener("keydown", handleKeydown)
+  document.addEventListener("keyup", handleKeyUp)
 
 
+  
 function handleKeydown(e) {
     const key = e.key;
     let shoot;
@@ -47,6 +46,21 @@ function handleKeydown(e) {
     }
   }
 }
-window.addEventListener("keydown", handleKeydown);
 
-}
+function handleKeyUp(e) {
+  const key=e.key;
+
+  const possibleKeystrokes = ["ArrowLeft", "ArrowRight"];
+
+  if(possibleKeystrokes.includes(key)) {
+    e.preventDefault();
+
+    switch(key) {
+      case "ArrowLeft":
+      case "ArrowRight":
+        game.plane.directionX = 0;
+        break;
+     }
+   }
+ }
+};

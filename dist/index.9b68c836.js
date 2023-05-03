@@ -588,31 +588,82 @@ class Game {
         }
         this.direction = 1;
         this.animateEnemies = this.animateEnemies.bind(this);
+        this.enemiesAnimationStarted = false;
     }
+    startAnimatingEnemies() {
+        if (!this.enemiesAnimationStarted) {
+            this.enemiesAnimationStarted = true;
+            this.animateEnemies();
+        }
+    }
+    //this moves the enemies 
     animateEnemies() {
+        let edgeReached = false;
+        //this checks if enemy reaches edge of container
         for(let i = 0; i < this.enemies.length; i++){
             const enemy = this.enemies[i];
-            if (enemy.col === 7 && this.direction === 1) {
-                this.direction = -1;
-                enemy.row += 1;
-            } else if (enemy.col === 0 && this.direction === -1) {
-                this.direction = 1;
-                enemy.row += 1;
+            if (this.direction === 1 && enemy.atRightEdge() || this.direction === -1 && enemy.atLeftEdge()) {
+                edgeReached = true;
+                break;
             }
-            if (this.direction === 1) enemy.moveRight();
-            else enemy.moveLeft();
-            enemy.element.style.top = enemy.row * 60 + "px";
         }
+        //move enemies using direction & edge reached 
+        for(let i = 0; i < this.enemies.length; i++){
+            const enemy = this.enemies[i];
+            if (edgeReached) {
+                enemy.row += 1;
+                enemy.element.style.top = enemy.row * 60 + "px";
+                if (enemy.row * 60 + enemy.height >= this.container.offsetHeight) {
+                    this.gameOver = true;
+                    this.endGame();
+                }
+            } else if (this.direction === 1) enemy.moveRight();
+            else enemy.moveLeft();
+        }
+        if (edgeReached) this.direction *= -1;
+        setTimeout(()=>this.animateEnemies(), 1000);
     }
     gameLoop() {
         if (this.gameOver) return;
+        this.startAnimatingEnemies();
         this.checkMissileEnemyCollision();
-        setInterval(this.animateEnemies, 2000);
         this.update();
+        this.updateMissiles();
         window.requestAnimationFrame(()=>this.gameLoop());
+    }
+    updateMissiles() {
+        for(let i = 0; i < this.plane.missiles.length; i++){
+            const missile = this.plane.missiles[i];
+            missile.moveMissile();
+            //this removes missles once it goes out of container 
+            if (missile.x < 0 || missile.x > this.container.clientWidth || missile.y < 0 || missile.y > this.container.clientHeight) {
+                this.plane.missile.splice(i, 1);
+                missile.element.remove();
+                i--;
+            } else //checks for collision between the missiles & enenmies
+            for(let j = 0; j < this.enemies.length; j++){
+                const enemy = this.enemies[j];
+                if (this.missileHitEnemy(missile, enemy)) {
+                    this.enemies.splice(j, 1);
+                    enemy.element.remove();
+                    this.plane.missiles.splice(i, 1);
+                    missile.element.remove();
+                    i--;
+                    this.score += 25;
+                    this.gameScore.textContent = this.score;
+                    break;
+                }
+            }
+        }
+    }
+    missileHitEnemy(missile, enemy) {
+        const missileRect = missile.element.getBoundingClientRect();
+        const enemyRect = enemy.element.getBoundingClientRect();
+        return missileRect.left < enemyRect.right && missileRect.right > enemyRect.left && missileRect.top < enemyRect.bottom && missileRect.bottom > enemyRect.top;
     }
     update() {
         this.plane.move();
+        this.updateMissiles();
         for(let i = 0; i < this.enemies.length; i++){
             const enemy = this.enemies[i];
             if (this.plane.didCollide(enemy)) {

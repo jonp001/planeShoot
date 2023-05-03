@@ -562,8 +562,9 @@ var _missleJs = require("./missle.js");
 window.onload = function() {
     console.log("Game started");
     const game = new (0, _gameJs.Game)();
-    // console.log("game: ", game)
     game.gameLoop();
+    document.addEventListener("keydown", handleKeydown);
+    document.addEventListener("keyup", handleKeyUp);
     function handleKeydown(e) {
         const key = e.key;
         let shoot;
@@ -591,7 +592,22 @@ window.onload = function() {
             }
         }
     }
-    window.addEventListener("keydown", handleKeydown);
+    function handleKeyUp(e) {
+        const key = e.key;
+        const possibleKeystrokes = [
+            "ArrowLeft",
+            "ArrowRight"
+        ];
+        if (possibleKeystrokes.includes(key)) {
+            e.preventDefault();
+            switch(key){
+                case "ArrowLeft":
+                case "ArrowRight":
+                    game.plane.directionX = 0;
+                    break;
+            }
+        }
+    }
 };
 
 },{"./game.js":"9hTyP","./missle.js":"5eSbI"}]},["fyTPu","dV6cC"], "dV6cC", "parcelRequirea506")
