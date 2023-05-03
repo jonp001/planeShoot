@@ -593,6 +593,7 @@ class Plane {
         if (this.left < 50) this.left = 50;
         if (this.left + this.width > this.container.offsetWidth - 50) this.left = this.container.offsetWidth - this.width - 50;
         this.updatePosition();
+        this.updateMissiles();
     }
     updatePosition() {
         this.element.style.left = `${this.left}px`;

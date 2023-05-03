@@ -569,7 +569,7 @@ class Missile {
         this.speed = speed;
         this.angle = angle;
         this.container = container;
-        this.element = document.createElement("div");
+        this.element = document.createElement("img");
         this.element.src = (0, _missilePngDefault.default);
         this.element.className = "missile";
         this.container.appendChild(this.element);

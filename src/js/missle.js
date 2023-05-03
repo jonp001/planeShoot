@@ -8,7 +8,7 @@ constructor(x, y, speed, angle, container) {
   this.container = container;
  
 
-  this.element = document.createElement("div");
+  this.element = document.createElement("img");
   this.element.src= missleSrc
   this.element.className = "missile";
   this.container.appendChild(this.element);

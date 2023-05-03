@@ -73,12 +73,11 @@ export class Game {
         return;
       }
     
+      this.checkMissileEnemyCollision();
+
       setInterval(this.animateEnemies, 1000*2)
       
       this.update();
-      
-      
-     
     
      window.requestAnimationFrame(() => this.gameLoop());
      
@@ -108,6 +107,34 @@ clearEnemies() {
   })
 } 
 
+checkMissileEnemyCollision() {
+  for (let i=0; i< this.plane.missiles.length; i++ ){
+    const missile= this.plane.missiles[i];
+  for (let j=0; j< this.enemies.length; j++){
+    const enemy= this.enemies[j];
+    const missileRect= missile.element.getBoundingClientRect();
+    const enemyRect = enemy.element.getBoundingClientRect()
+  
+    if( missileRect.left < enemyRect.right &&
+      missileRect.right > enemyRect.left &&
+      missileRect.top < enemyRect.bottom &&
+      missileRect.bottom > enemyRect.top 
+      ) {
+        //if collision occurs, remove both enemy & missle + update Score 
+        enemy.element.remove();
+        this.enemies,splice(j, 1);
+        j--;
+
+        missiles.element.remove();
+        this.plane.missiles.splice(i, 1)
+        i--;
+
+        this.score +=25;
+        this.gameScore.innerHTML= this.score
+      }
+    }
+  }
+}
 
 //what happends when game ends
   endGame() {

@@ -46,6 +46,7 @@ export class Plane {
     }
 
     this.updatePosition();
+    this.updateMissiles();
   }
 
   updatePosition() {
