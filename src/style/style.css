@@ -1,6 +1,10 @@
 body{
     background-color: black;
     color: white;
+    /* background-image: url(../../images/gameOver.jpeg);
+    background-size: 600 ;
+    animation:slide 1s ease-in-out infinite alternate; */
+    
 }
 
 .container{
@@ -46,3 +50,16 @@ body{
     content: url("../../images/missile.png") ;
     animation: 5s linear 1s infinite alternate slidein;
 }
+
+#gameOverText{
+    display: none;
+   
+  }
+
+
+#gameWinText {
+display: none;
+}
+
+
+

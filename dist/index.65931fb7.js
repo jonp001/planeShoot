@@ -142,13 +142,13 @@
       this[globalName] = mainExports;
     }
   }
-})({"4xSgZ":[function(require,module,exports) {
+})({"0dddX":[function(require,module,exports) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
-module.bundle.HMR_BUNDLE_ID = "3f06a1a022581682";
+module.bundle.HMR_BUNDLE_ID = "05ec43b865931fb7";
 "use strict";
 /* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, chrome, browser, globalThis, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
 import type {
@@ -556,64 +556,40 @@ function hmrAccept(bundle, id) {
     });
 }
 
-},{}],"g00R2":[function(require,module,exports) {
+},{}],"5eSbI":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Plane", ()=>Plane);
-var _planePng = require("../../images/plane.png");
-var _planePngDefault = parcelHelpers.interopDefault(_planePng);
-var _missleJs = require("./missle.js");
-class Plane {
-    constructor(container, left, right, top){
+parcelHelpers.export(exports, "Missile", ()=>Missile);
+var _missilePng = require("../../images/missile.png");
+var _missilePngDefault = parcelHelpers.interopDefault(_missilePng);
+class Missile {
+    constructor(x, y, speed, angle, container){
+        this.x = x;
+        this.y = y;
+        this.speed = speed;
+        this.angle = angle;
         this.container = container;
-        this.left = left;
-        this.right = right;
-        this.top = top;
-        this.directionX = 0;
-        this.directionY = 0;
-        this.missiles = [];
-        this.missileSpeed = 10;
-        this.missileAngle = 0;
-        this.container = document.querySelector(".container");
         this.element = document.createElement("img");
-        this.element.src = (0, _planePngDefault.default);
-        this.element.setAttribute("id", "planeImg");
+        this.element.src = (0, _missilePngDefault.default);
+        this.element.className = "missile";
         this.container.appendChild(this.element);
-        this.width = 60;
-        this.element.style.width = `${this.width}px`;
-        this.height = 60;
-        this.element.style.height = `${this.height}px`;
-        this.element.style.position = "absolute";
-        this.element.style.left = `${this.left}px`;
-        this.element.style.top = `${this.top}px`;
+        this.updatePosition();
     }
-    move() {
-        this.left += this.directionX;
-        this.right -= this.directionX;
-        if (this.left < 50) this.left = 50;
-        if (this.left + this.width > this.container.offsetWidth - 50) this.left = this.container.offsetWidth - this.width - 50;
+    moveMissile() {
+        this.y -= this.speed * Math.cos(this.angle);
+        this.x += this.speed * Math.sin(this.angle);
         this.updatePosition();
     }
     updatePosition() {
-        this.element.style.left = `${this.left}px`;
-        this.element.style.right = `${this.right}px`;
-    }
-    shootMissle() {
-        const missile = new (0, _missleJs.Missile)(this.left + this.width / 2, this.top, this.missileSpeed, this.missileAngle, this.container);
-        this.missiles.push(missile);
-    }
-    didCollide(enemy) {
-        const planeRect = this.element.getBoundingClientRect();
-        const enemyRect = enemy.element.getBoundingClientRect();
-        if (planeRect.left < enemyRect.left && planeRect.right > enemyRect.left && planeRect.top < enemyRect.top && planeRect.bottom > enemyRect.top) return true;
-        else return false;
+        this.element.style.left = `${this.x}px`;
+        this.element.style.top = `${this.y}px`;
     }
 }
 
-},{"../../images/plane.png":"aepTe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./missle.js":"5eSbI"}],"aepTe":[function(require,module,exports) {
-module.exports = require("1d355a623d4c8cf4").getBundleURL("5pu5T") + "plane.c24ce8af.png" + "?" + Date.now();
+},{"../../images/missile.png":"fvyO8","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fvyO8":[function(require,module,exports) {
+module.exports = require("48c742efd9ec0cd5").getBundleURL("vwHIv") + "missile.148c1123.png" + "?" + Date.now();
 
-},{"1d355a623d4c8cf4":"lgJ39"}],"lgJ39":[function(require,module,exports) {
+},{"48c742efd9ec0cd5":"lgJ39"}],"lgJ39":[function(require,module,exports) {
 "use strict";
 var bundleURL = {};
 function getBundleURLCached(id) {
@@ -647,36 +623,6 @@ exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
 exports.getOrigin = getOrigin;
 
-},{}],"gkKU3":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, "__esModule", {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
+},{}]},["0dddX"], null, "parcelRequirea506")
 
-},{}]},["4xSgZ","g00R2"], "g00R2", "parcelRequirea506")
-
-//# sourceMappingURL=index.22581682.js.map
+//# sourceMappingURL=index.65931fb7.js.map

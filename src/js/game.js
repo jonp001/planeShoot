@@ -2,6 +2,7 @@
 import { Plane } from "./plane.js";
 import { Enemy } from "./enemy.js";
 import { Missile } from "./missle.js";
+import gameOverPic from "../../images/gameOver.jpeg";
 
 export class Game {
     constructor() {
@@ -11,8 +12,10 @@ export class Game {
       this.gameOverScreen= document.querySelector("#game-container")
       this.body= document.querySelector("body");
       this.gameFinished = document.getElementById("game-finished");
+      this.gameOverText= document.getElementById("gameOverText");
+      this.gameWinText= document.getElementById("gameWinText");
       this.score = 0;
-      this.lives = 4;
+      this.lives = 1;
       this.gameOver = false;
       this.plane = new Plane(
         this.container,
@@ -80,9 +83,11 @@ for( let i=0; i< this.enemies.length; i++) {
     enemy.row += 1;
     enemy.element.style.top= enemy.row * 60 + "px";
 
+//checks for enemies that reached bottom of container
     if( enemy.row * 60 + enemy.height >= this.container.offsetHeight) {
       this.gameOver=true;
       this.endGame();
+      return;
     }
   } else {
     if( this.direction === 1) {
@@ -126,10 +131,18 @@ if(edgeReached){
         if (missile.x < 0 || missile.x > this.container.clientWidth ||
             missile.y < 0 || missile.y > this.container.clientHeight
           ) { 
-        this.plane.missile.splice(i, 1)
+        this.plane.missiles.splice(i, 1)
         missile.element.remove();
         i--;
      } else {
+
+      //checks for collision between the missile and top of container
+      const missileRect= missile.element.getBoundingClientRect();
+      if(missileRect.top <= 0) {
+        this.plane.missiles.splice(i,1);
+        missile.element.remove();
+        i--;
+      }
 
       //checks for collision between the missiles & enenmies
       for(let j=0; j< this.enemies.length ; j++) {
@@ -167,7 +180,7 @@ if(edgeReached){
     update() {
       this.plane.move();
       
-      this.updateMissiles();
+      // this.updateMissiles();
     
 
       for( let i=0; i<this.enemies.length; i++){
@@ -177,8 +190,16 @@ if(edgeReached){
         this.clearEnemies()
         this.lives = 0;
         this.gameOver= true;
-        this.endGame()
+        this.gameOverText.style.display="block";
+       
+       
+        this.endGame();
       }
+    }
+    if( this.score >= 700){
+      this.endGame();
+      this.gameWinText.style.display="block";
+     
     }
   }
 
@@ -206,7 +227,7 @@ checkMissileEnemyCollision() {
         this.enemies.splice(j, 1);
         j--;
 
-        missiles.element.remove();
+        missile  .element.remove();
         this.plane.missiles.splice(i, 1)
         i--;
 
@@ -235,7 +256,5 @@ checkMissileEnemyCollision() {
 
   this.gameOverScreen.style.display= "none";
 
-  this.body.style.backgroundImage= "url(../../images/gameOver.png)";
- }
-    }
-  
+   }
+  }

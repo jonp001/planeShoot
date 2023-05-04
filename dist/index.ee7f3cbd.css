@@ -39,4 +39,8 @@ body {
   position: absolute;
 }
 
+#gameOverText, #gameWinText {
+  display: none;
+}
+
 /*# sourceMappingURL=index.ee7f3cbd.css.map */

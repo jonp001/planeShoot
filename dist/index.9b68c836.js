@@ -563,6 +563,8 @@ parcelHelpers.export(exports, "Game", ()=>Game);
 var _planeJs = require("./plane.js");
 var _enemyJs = require("./enemy.js");
 var _missleJs = require("./missle.js");
+var _gameOverJpeg = require("../../images/gameOver.jpeg");
+var _gameOverJpegDefault = parcelHelpers.interopDefault(_gameOverJpeg);
 class Game {
     constructor(){
         this.container = document.querySelector(".container");
@@ -571,8 +573,10 @@ class Game {
         this.gameOverScreen = document.querySelector("#game-container");
         this.body = document.querySelector("body");
         this.gameFinished = document.getElementById("game-finished");
+        this.gameOverText = document.getElementById("gameOverText");
+        this.gameWinText = document.getElementById("gameWinText");
         this.score = 0;
-        this.lives = 4;
+        this.lives = 1;
         this.gameOver = false;
         this.plane = new (0, _planeJs.Plane)(this.container, 300, 300, 650, 100, 150, "../../images/plane.png");
         this.enemies = [];
@@ -613,9 +617,11 @@ class Game {
             if (edgeReached) {
                 enemy.row += 1;
                 enemy.element.style.top = enemy.row * 60 + "px";
+                //checks for enemies that reached bottom of container
                 if (enemy.row * 60 + enemy.height >= this.container.offsetHeight) {
                     this.gameOver = true;
                     this.endGame();
+                    return;
                 }
             } else if (this.direction === 1) enemy.moveRight();
             else enemy.moveLeft();
@@ -637,21 +643,30 @@ class Game {
             missile.moveMissile();
             //this removes missles once it goes out of container 
             if (missile.x < 0 || missile.x > this.container.clientWidth || missile.y < 0 || missile.y > this.container.clientHeight) {
-                this.plane.missile.splice(i, 1);
+                this.plane.missiles.splice(i, 1);
                 missile.element.remove();
                 i--;
-            } else //checks for collision between the missiles & enenmies
-            for(let j = 0; j < this.enemies.length; j++){
-                const enemy = this.enemies[j];
-                if (this.missileHitEnemy(missile, enemy)) {
-                    this.enemies.splice(j, 1);
-                    enemy.element.remove();
+            } else {
+                //checks for collision between the missile and top of container
+                const missileRect = missile.element.getBoundingClientRect();
+                if (missileRect.top <= 0) {
                     this.plane.missiles.splice(i, 1);
                     missile.element.remove();
                     i--;
-                    this.score += 25;
-                    this.gameScore.textContent = this.score;
-                    break;
+                }
+                //checks for collision between the missiles & enenmies
+                for(let j = 0; j < this.enemies.length; j++){
+                    const enemy = this.enemies[j];
+                    if (this.missileHitEnemy(missile, enemy)) {
+                        this.enemies.splice(j, 1);
+                        enemy.element.remove();
+                        this.plane.missiles.splice(i, 1);
+                        missile.element.remove();
+                        i--;
+                        this.score += 25;
+                        this.gameScore.textContent = this.score;
+                        break;
+                    }
                 }
             }
         }
@@ -664,15 +679,20 @@ class Game {
     }
     update() {
         this.plane.move();
-        this.updateMissiles();
+        // this.updateMissiles();
         for(let i = 0; i < this.enemies.length; i++){
             const enemy = this.enemies[i];
             if (this.plane.didCollide(enemy)) {
                 this.clearEnemies();
                 this.lives = 0;
                 this.gameOver = true;
+                this.gameOverText.style.display = "block";
                 this.endGame();
             }
+        }
+        if (this.score >= 700) {
+            this.endGame();
+            this.gameWinText.style.display = "block";
         }
     }
     clearEnemies() {
@@ -692,7 +712,7 @@ class Game {
                     enemy.element.remove();
                     this.enemies.splice(j, 1);
                     j--;
-                    missiles.element.remove();
+                    missile.element.remove();
                     this.plane.missiles.splice(i, 1);
                     i--;
                     this.score += 25;
@@ -712,10 +732,12 @@ class Game {
         this.container.style.display = "none";
         this.gameFinished.style.display = "flex";
         this.gameOverScreen.style.display = "none";
-        this.body.style.backgroundImage = "url(../../images/gameOver.png)";
     }
 }
 
-},{"./plane.js":"g00R2","./enemy.js":"d4MNF","./missle.js":"5eSbI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["gQxC0","9hTyP"], "9hTyP", "parcelRequirea506")
+},{"./plane.js":"g00R2","./enemy.js":"d4MNF","./missle.js":"5eSbI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../images/gameOver.jpeg":"aoxRI"}],"aoxRI":[function(require,module,exports) {
+module.exports = require("61e91034a37d8034").getBundleURL("feTsO") + "gameOver.f5961283.jpeg" + "?" + Date.now();
+
+},{"61e91034a37d8034":"lgJ39"}]},["gQxC0","9hTyP"], "9hTyP", "parcelRequirea506")
 
 //# sourceMappingURL=index.9b68c836.js.map
