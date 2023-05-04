@@ -656,6 +656,7 @@ class Game {
             }
         }
     }
+    //sets parameters for the above code to function
     missileHitEnemy(missile, enemy) {
         const missileRect = missile.element.getBoundingClientRect();
         const enemyRect = enemy.element.getBoundingClientRect();
@@ -689,7 +690,7 @@ class Game {
                 if (missileRect.left < enemyRect.right && missileRect.right > enemyRect.left && missileRect.top < enemyRect.bottom && missileRect.bottom > enemyRect.top) {
                     //if collision occurs, remove both enemy & missle + update Score 
                     enemy.element.remove();
-                    this.enemies, splice(j, 1);
+                    this.enemies.splice(j, 1);
                     j--;
                     missiles.element.remove();
                     this.plane.missiles.splice(i, 1);

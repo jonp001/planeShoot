@@ -119,6 +119,7 @@ if(edgeReached){
     updateMissiles() {
       for (let i = 0; i < this.plane.missiles.length; i++) {
         const missile = this.plane.missiles[i];
+
         missile.moveMissile();
     
         //this removes missles once it goes out of container 
@@ -150,6 +151,7 @@ if(edgeReached){
      }
     }
   }
+  //sets parameters for the above code to function
   missileHitEnemy(missile, enemy) {
     const missileRect= missile.element.getBoundingClientRect();
     const enemyRect= enemy.element.getBoundingClientRect();
@@ -201,7 +203,7 @@ checkMissileEnemyCollision() {
       ) {
         //if collision occurs, remove both enemy & missle + update Score 
         enemy.element.remove();
-        this.enemies,splice(j, 1);
+        this.enemies.splice(j, 1);
         j--;
 
         missiles.element.remove();
