@@ -2,7 +2,7 @@
 import { Plane } from "./plane.js";
 import { Enemy } from "./enemy.js";
 import { Missile } from "./missle.js";
-import gameOverPic from "../../images/gameOver.jpeg";
+
 
 export class Game {
     constructor() {
