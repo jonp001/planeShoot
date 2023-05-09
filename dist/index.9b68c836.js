@@ -563,8 +563,6 @@ parcelHelpers.export(exports, "Game", ()=>Game);
 var _planeJs = require("./plane.js");
 var _enemyJs = require("./enemy.js");
 var _missleJs = require("./missle.js");
-var _gameOverJpeg = require("../../images/gameOver.jpeg");
-var _gameOverJpegDefault = parcelHelpers.interopDefault(_gameOverJpeg);
 class Game {
     constructor(){
         this.container = document.querySelector(".container");
@@ -735,9 +733,6 @@ class Game {
     }
 }
 
-},{"./plane.js":"g00R2","./enemy.js":"d4MNF","./missle.js":"5eSbI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../images/gameOver.jpeg":"aoxRI"}],"aoxRI":[function(require,module,exports) {
-module.exports = require("61e91034a37d8034").getBundleURL("feTsO") + "gameOver.f5961283.jpeg" + "?" + Date.now();
-
-},{"61e91034a37d8034":"lgJ39"}]},["gQxC0","9hTyP"], "9hTyP", "parcelRequirea506")
+},{"./plane.js":"g00R2","./enemy.js":"d4MNF","./missle.js":"5eSbI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["gQxC0","9hTyP"], "9hTyP", "parcelRequirea506")
 
 //# sourceMappingURL=index.9b68c836.js.map
